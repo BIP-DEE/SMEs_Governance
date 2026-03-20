@@ -18,9 +18,9 @@ export function EmployeeShell({ children }: { children: ReactNode }) {
     >
       <SidebarToggle />
       <Sidebar variant="employee" />
-      <div className="min-w-0">
+      <div className="main-employee-canvas min-w-0">
         <Topbar variant="employee" />
-        <main>{children}</main>
+        <main className="pb-8">{children}</main>
       </div>
     </div>
   );

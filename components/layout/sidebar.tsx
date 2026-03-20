@@ -62,7 +62,10 @@ function NavLink({
       </span>
       {!collapsed ? (
         <>
-          <span className="min-w-0 flex-1 font-medium tracking-[-0.01em]">{item.name}</span>
+          <div className="min-w-0 flex-1">
+            <div className="font-medium tracking-[-0.01em]">{item.name}</div>
+            {active && item.hint ? <div className="mt-0.5 text-[11px] opacity-60">{item.hint}</div> : null}
+          </div>
           {item.badge ? (
             <span
               className={cn(
@@ -84,6 +87,10 @@ export function Sidebar({ variant = "admin" }: SidebarProps) {
   const { sidebarCollapsed, mobileSidebarOpen, closeMobileSidebar } = useUi();
   const sections = variant === "admin" ? adminSections : employeeSections;
   const collapsed = sidebarCollapsed;
+  const sidebarSurfaceClass = variant === "admin" ? "surface-sidebar-admin" : "surface-sidebar-employee";
+  const workspaceLabel = variant === "admin" ? "Northstar Manufacturing" : "Employee workspace";
+  const workspaceSubLabel =
+    variant === "admin" ? "Governance control center" : "Approved internal workspace";
 
   return (
     <>
@@ -104,18 +111,19 @@ export function Sidebar({ variant = "admin" }: SidebarProps) {
           collapsed ? "lg:w-[112px]" : "lg:w-[304px]"
         )}
       >
-        <div className="surface-sidebar relative flex h-full flex-col overflow-hidden rounded-[32px] border border-white/8 px-3 pb-4 pt-4 text-slate-200">
+        <div className={cn(sidebarSurfaceClass, "relative flex h-full flex-col overflow-hidden rounded-[32px] border border-white/8 px-3 pb-4 pt-4 text-slate-200")}>
           <div className={cn("mb-4 flex items-center", collapsed ? "justify-center" : "px-2")}>
             <ProductBrand compact={collapsed} context="sidebar" />
           </div>
 
           {!collapsed ? (
-            <div className="mb-4 rounded-[20px] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-              <div className="text-sm font-medium text-white/94">
-                {variant === "admin" ? "Northstar Manufacturing" : "Employee access"}
+            <div className="mb-4 rounded-[22px] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.04))] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-100/50">
+                {variant === "admin" ? "Governance workspace" : "Employee access"}
               </div>
+              <div className="mt-2 text-sm font-medium text-white/94">{workspaceLabel}</div>
               <div className="mt-1 text-xs text-cyan-100/54">
-                {variant === "admin" ? "Governance control center" : "Approved internal workspace"}
+                {workspaceSubLabel}
               </div>
             </div>
           ) : null}
@@ -170,7 +178,12 @@ export function Sidebar({ variant = "admin" }: SidebarProps) {
                     <span className="flex h-9 w-9 items-center justify-center rounded-[14px] border border-white/8 bg-white/6 transition-all duration-200 group-hover:border-cyan-200/16 group-hover:bg-white/10">
                       <AppIcon name={item.icon} className="h-[17px] w-[17px]" />
                     </span>
-                    {!collapsed ? <div className="text-sm font-medium tracking-[-0.01em]">{item.label}</div> : null}
+                    {!collapsed ? (
+                      <div className="min-w-0">
+                        <div className="text-sm font-medium tracking-[-0.01em]">{item.label}</div>
+                        {active ? <div className="mt-0.5 text-[11px] opacity-60">{item.description}</div> : null}
+                      </div>
+                    ) : null}
                   </Link>
                 );
               })}

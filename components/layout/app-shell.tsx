@@ -18,9 +18,9 @@ export function AppShell({ children }: { children: ReactNode }) {
     >
       <SidebarToggle />
       <Sidebar variant="admin" />
-      <div className="min-w-0">
+      <div className="main-admin-canvas min-w-0">
         <Topbar variant="admin" />
-        <main>{children}</main>
+        <main className="pb-8">{children}</main>
       </div>
     </div>
   );

@@ -9,32 +9,36 @@ import { Tabs } from "@/components/ui/tabs";
 
 const workflowItems = [
   {
-    id: "register",
-    label: "Register new use",
-    detail: "6 new records are waiting to be added to the company register.",
-    href: "/inventory",
-    icon: "inventory" as const,
-  },
-  {
     id: "review",
-    label: "Review requests",
-    detail: "8 requests are active and ready for decision or follow-up.",
+    label: "Supplier review assistant",
+    detail: "Waiting for retention evidence before final approval.",
     href: "/requests",
     icon: "requests" as const,
+    stage: "Review",
+  },
+  {
+    id: "register",
+    label: "Three new tools need owners and review dates",
+    detail: "The register is missing ownership detail on recent additions.",
+    href: "/inventory",
+    icon: "inventory" as const,
+    stage: "Register",
   },
   {
     id: "enable",
-    label: "Publish enablement",
-    detail: "2 policy and training updates are ready to roll out.",
+    label: "Sensitive data guidance is ready to publish",
+    detail: "Finance and support can move into acknowledgement this week.",
     href: "/policies",
     icon: "policies" as const,
+    stage: "Enable",
   },
   {
-    id: "observe",
-    label: "Check monitoring",
-    detail: "7 notable events should be reviewed before the next export.",
+    id: "monitor",
+    label: "One flagged workspace event still needs review",
+    detail: "Monitoring already has the log context attached.",
     href: "/monitoring",
     icon: "monitoring" as const,
+    stage: "Monitor",
   },
 ];
 
@@ -69,7 +73,7 @@ const evidenceItems = [
 ];
 
 const tabs = [
-  { id: "workflow", label: "Workflow", count: 4 },
+  { id: "workflow", label: "Queue", count: 4 },
   { id: "updates", label: "Updates", count: 2 },
   { id: "evidence", label: "Evidence", count: 2 },
 ];
@@ -79,19 +83,19 @@ export function DashboardSecondaryPanel() {
 
   return (
     <Card>
-      <CardHeader className="space-y-4">
+      <CardHeader className="space-y-4 border-b border-[#c8e0ea]/80">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="space-y-2">
-            <Badge className="w-fit">Guided detail</Badge>
-            <CardTitle className="text-[1.35rem]">Open the next layer only when you need it.</CardTitle>
+            <Badge className="w-fit">Secondary detail</Badge>
+            <CardTitle className="text-[1.3rem]">Keep the extra context one click below the main view.</CardTitle>
           </div>
           <Tabs items={tabs} activeTab={activeTab} onChange={setActiveTab} />
         </div>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="pt-5">
         {activeTab === "workflow" ? (
-          <div className="grid gap-3 xl:grid-cols-2">
+          <div className="space-y-3">
             {workflowItems.map((item) => (
               <Link
                 key={item.id}
@@ -102,7 +106,10 @@ export function DashboardSecondaryPanel() {
                   <AppIcon name={item.icon} className="h-4 w-4" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="text-sm font-semibold text-slate-950">{item.label}</div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge tone="info">{item.stage}</Badge>
+                    <div className="text-sm font-semibold text-slate-950">{item.label}</div>
+                  </div>
                   <div className="mt-1 text-sm leading-6 text-slate-500">{item.detail}</div>
                 </div>
                 <span className="mt-1 text-slate-400 transition group-hover:text-slate-700">
@@ -142,9 +149,7 @@ export function DashboardSecondaryPanel() {
                 <div className="min-w-0 space-y-1">
                   <div className="flex flex-wrap items-center gap-3">
                     <Badge tone={item.tone}>{item.tone === "warning" ? "Needs evidence" : "Ready"}</Badge>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                      Reports
-                    </span>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Reports</span>
                   </div>
                   <div className="text-sm font-semibold text-slate-950">{item.title}</div>
                   <div className="text-sm leading-6 text-slate-500">{item.detail}</div>

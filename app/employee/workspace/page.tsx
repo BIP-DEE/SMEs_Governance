@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { EmployeeShell } from "@/components/layout/employee-shell";
 import { PageContainer, PageHeader } from "@/components/layout/page-container";
+import { AppIcon } from "@/components/ui/app-icon";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -25,7 +26,7 @@ const conversations = [
         role: "assistant",
         meta: "Approved AI workspace • 10:15",
         content:
-          "Draft summary:\n\n1. Procurement will standardise supplier review templates by Friday.\n2. Legal requested tighter controls for contract clause drafting workflows.\n3. Operations will pilot a meeting-summary workflow with manager review enabled.\n\nAction items:\n- Nina Patel to finalise the procurement template rollout.\n- Sophie Turner to confirm legal review checkpoints.\n- Daniel Scott to configure the pilot workspace and logging.",
+          "Decisions:\n1. Procurement will standardise supplier review templates by Friday.\n2. Legal requested tighter controls for contract clause drafting workflows.\n3. Operations will pilot a meeting-summary workflow with manager review enabled.\n\nAction items:\n- Nina Patel to finalise the procurement template rollout.\n- Sophie Turner to confirm legal review checkpoints.\n- Daniel Scott to configure the pilot workspace and logging.",
       },
     ],
   },
@@ -95,8 +96,8 @@ export default function EmployeeWorkspacePage() {
       <PageContainer>
         <PageHeader
           eyebrow="AI workspace"
-          title="Work inside the approved assistant, not a public chatbot."
-          description="Use the workspace for internal drafting and summarising. Choose a section and reveal only the detail you need."
+          title="Work inside the approved assistant."
+          description="Keep the conversation in focus and pull in templates or guidance only when needed."
           actions={
             <>
               <Button variant="secondary" href="/employee/policies">
@@ -109,12 +110,12 @@ export default function EmployeeWorkspacePage() {
         />
 
         <section className="grid gap-5 xl:grid-cols-[280px_minmax(0,1fr)]">
-          <Card className="overflow-hidden">
-            <CardHeader className="border-b border-[#bfdedf]/70">
-              <Badge className="w-fit">Conversations</Badge>
-              <CardTitle>Recent sessions</CardTitle>
+          <Card className="surface-focus-employee overflow-hidden">
+            <CardHeader className="border-b border-[#c7e1e9]/80">
+              <Badge className="w-fit">Sessions</Badge>
+              <CardTitle>Recent conversations</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 pt-5">
+            <CardContent className="space-y-2 pt-4">
               {conversations.map((conversation) => {
                 const active = selectedConversationId === conversation.id;
 
@@ -124,18 +125,18 @@ export default function EmployeeWorkspacePage() {
                     key={conversation.id}
                     onClick={() => setSelectedConversationId(conversation.id)}
                     className={cn(
-                      "w-full rounded-[20px] border px-4 py-4 text-left transition",
+                      "w-full rounded-[18px] border px-4 py-4 text-left transition-all duration-200 ease-out",
                       active
-                        ? "surface-card-strong border-[#9fd3d9]"
-                        : "border-[#bfdedf]/70 bg-[rgba(241,250,249,0.66)] hover:-translate-y-[1px] hover:border-[#a5d6db] hover:bg-[rgba(245,252,251,0.84)]"
+                        ? "surface-card border-[#9dcde2] shadow-[0_14px_28px_rgba(28,65,118,0.07)]"
+                        : "interactive-card border-[#c6e0e8]/80 bg-white/54"
                     )}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <div>
+                      <div className="min-w-0">
                         <div className="text-sm font-semibold text-slate-950">{conversation.title}</div>
                         <div className="mt-1 text-sm leading-6 text-slate-500">{conversation.preview}</div>
                       </div>
-                      <div className="text-xs uppercase tracking-[0.14em] text-slate-500">{conversation.time}</div>
+                      <div className="shrink-0 text-[11px] uppercase tracking-[0.16em] text-slate-500">{conversation.time}</div>
                     </div>
                   </button>
                 );
@@ -143,14 +144,15 @@ export default function EmployeeWorkspacePage() {
             </CardContent>
           </Card>
 
-          <Card className="surface-card-strong overflow-hidden">
-            <CardHeader className="border-b border-[#bfdedf]/70">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <Card className="surface-focus-employee overflow-hidden">
+            <CardHeader className="border-b border-[#c7e1e9]/80">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div className="space-y-2">
-                  <Badge tone="info" className="w-fit">
-                    Active session
+                  <Badge tone="success" className="w-fit">
+                    Approved workspace
                   </Badge>
                   <CardTitle className="text-[1.35rem]">{selectedConversation.title}</CardTitle>
+                  <p className="max-w-2xl text-sm leading-6 text-slate-500">{selectedConversation.preview}</p>
                 </div>
                 <Tabs
                   items={[
@@ -166,19 +168,21 @@ export default function EmployeeWorkspacePage() {
             <CardContent className="space-y-5 pt-5">
               {activeTab === "chat" ? (
                 <>
-                  <div className="rounded-[20px] border border-sky-200/80 bg-[rgba(225,245,247,0.92)] px-4 py-3 text-sm leading-6 text-slate-700">
-                    Keep prompts work-related, use approved data only, and review outputs before they leave the company.
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge tone="success">Approved internal use</Badge>
+                    <span className="text-xs text-slate-500">Use approved data only and review outputs before sharing.</span>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {selectedConversation.messages.map((message, index) => (
                       <div
                         key={`${message.role}-${index}`}
-                        className={`max-w-3xl rounded-[24px] border px-4 py-4 ${
+                        className={cn(
+                          "max-w-3xl rounded-[22px] border px-4 py-4",
                           message.role === "assistant"
-                            ? "border-[#bfdedf]/70 bg-[rgba(242,251,250,0.82)]"
-                            : "ml-auto border-sky-200/80 bg-[rgba(226,246,247,0.9)]"
-                        }`}
+                            ? "surface-card-soft border-[#c7e1e9]/80"
+                            : "ml-auto border-[#b7d7e6]/80 bg-[linear-gradient(180deg,rgba(236,247,255,0.9),rgba(228,243,252,0.82))]"
+                        )}
                       >
                         <div className="mb-2 flex items-center justify-between gap-3">
                           <p className="text-sm font-semibold text-slate-950">
@@ -194,15 +198,18 @@ export default function EmployeeWorkspacePage() {
                   </div>
 
                   <div className="surface-card-soft rounded-[24px] p-4">
+                    <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                      Prompt composer
+                    </div>
                     <textarea
-                      className="min-h-[150px] w-full rounded-[20px] border border-[#bfdedf]/80 bg-[rgba(244,252,251,0.86)] px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-500 focus:border-cyan-300/90 focus:ring-4 focus:ring-cyan-500/12"
+                      className="min-h-[140px] w-full rounded-[20px] border border-[#c4dfe8]/85 bg-white/78 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-500 focus:border-cyan-300/90 focus:ring-4 focus:ring-cyan-500/12"
                       placeholder="Ask for help with an approved internal task."
                       defaultValue=""
                     />
                     <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                       <div className="flex flex-wrap gap-2">
                         <Badge tone="success">Logging on</Badge>
-                        <Badge>Approved internal use</Badge>
+                        <Badge>Manager review available</Badge>
                       </div>
                       <div className="flex flex-wrap gap-2">
                         <Button size="sm" variant="secondary">
@@ -216,12 +223,12 @@ export default function EmployeeWorkspacePage() {
               ) : null}
 
               {activeTab === "templates" ? (
-                <div className="grid gap-3 sm:grid-cols-3">
+                <div className="grid gap-3 md:grid-cols-3">
                   {templateCards.map((template) => (
                     <button
                       key={template.title}
                       type="button"
-                      className="surface-card-soft rounded-[22px] px-4 py-4 text-left transition hover:-translate-y-[1px]"
+                      className="surface-card-soft interactive-card rounded-[22px] px-4 py-4 text-left"
                     >
                       <div className="text-sm font-semibold text-slate-950">{template.title}</div>
                       <div className="mt-2 text-sm leading-6 text-slate-500">{template.detail}</div>
@@ -238,7 +245,7 @@ export default function EmployeeWorkspacePage() {
                       "Review outputs before sending them externally or relying on them in a decision.",
                       "Escalate unusual use through the request process before continuing.",
                     ].map((item) => (
-                      <div key={item} className="rounded-[18px] border border-[#bfdedf]/70 px-4 py-3 text-sm leading-6 text-slate-700">
+                      <div key={item} className="surface-card-soft interactive-card rounded-[18px] px-4 py-4 text-sm leading-6 text-slate-700">
                         {item}
                       </div>
                     ))}
@@ -249,9 +256,9 @@ export default function EmployeeWorkspacePage() {
                       ["Policy mode", "Guided"],
                       ["Data scope", "Approved internal data"],
                     ].map(([label, value]) => (
-                      <div key={label} className="rounded-[18px] border border-[#bfdedf]/70 px-4 py-3">
+                      <div key={label} className="rounded-[18px] border border-[#c7e1e9]/80 bg-white/56 px-4 py-4">
                         <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</div>
-                        <div className="mt-1 text-sm font-medium text-slate-900">{value}</div>
+                        <div className="mt-2 text-sm font-medium text-slate-900">{value}</div>
                       </div>
                     ))}
                   </div>

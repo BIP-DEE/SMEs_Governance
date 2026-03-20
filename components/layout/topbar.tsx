@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { AppIcon } from "@/components/ui/app-icon";
 import { Button } from "@/components/ui/button";
 import { pageMeta } from "@/lib/navigation";
+import { cn } from "@/lib/utils";
 
 type TopbarProps = {
   variant: "admin" | "employee";
@@ -16,20 +17,31 @@ export function Topbar({ variant }: TopbarProps) {
     title: variant === "admin" ? "Governance workspace" : "Employee workspace",
     subtitle: "",
   };
+  const topbarClass = variant === "admin" ? "surface-topbar-admin" : "surface-topbar-employee";
+  const sectionPillClass =
+    variant === "admin"
+      ? "border-[#9ec6e8] bg-[rgba(232,243,255,0.82)] text-sky-900"
+      : "border-[#b9d8e9] bg-[rgba(237,248,252,0.88)] text-teal-900";
+  const userChipClass =
+    variant === "admin"
+      ? "border-[#bcdceb] bg-[linear-gradient(180deg,rgba(244,251,255,0.94),rgba(232,245,250,0.86))] shadow-[0_10px_22px_rgba(28,65,118,0.06)]"
+      : "border-[#c7e0e7] bg-[linear-gradient(180deg,rgba(246,252,253,0.94),rgba(234,248,249,0.88))] shadow-[0_10px_22px_rgba(21,97,107,0.06)]";
 
   return (
     <header className="sticky top-0 z-20 px-4 pt-4 sm:px-6 lg:px-8">
-      <div className="surface-topbar flex min-h-[68px] items-center justify-between rounded-[22px] px-4 sm:px-5 lg:px-6">
+      <div className={cn(topbarClass, "flex min-h-[72px] items-center justify-between rounded-[22px] px-4 sm:px-5 lg:px-6")}>
         <div className="pl-12 lg:pl-0">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-800/72">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-900/58">
             {variant === "admin" ? "Northstar Manufacturing" : "Employee workspace"}
           </div>
-          <div className="mt-1 flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-[#bfdced] bg-[rgba(240,248,255,0.82)] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-sky-800">
+          <div className="mt-1 flex flex-wrap items-start gap-3">
+            <span className={cn("rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em]", sectionPillClass)}>
               {meta.section}
             </span>
-            <span className="text-sm text-slate-400">/</span>
-            <span className="text-sm text-slate-500">{meta.title}</span>
+            <div className="min-w-0">
+              <div className="text-sm font-semibold tracking-[-0.02em] text-slate-950">{meta.title}</div>
+              {meta.subtitle ? <div className="hidden text-xs text-slate-500 sm:block">{meta.subtitle}</div> : null}
+            </div>
           </div>
         </div>
 
@@ -40,7 +52,12 @@ export function Topbar({ variant }: TopbarProps) {
               <span className="hidden sm:inline">Settings</span>
             </Button>
           ) : null}
-          <div className="rounded-full border border-[#bcdceb] bg-[linear-gradient(180deg,rgba(244,251,255,0.94),rgba(232,245,250,0.86))] px-3.5 py-2 shadow-[0_10px_22px_rgba(28,65,118,0.06)]">
+          {variant === "employee" ? (
+            <span className="hidden rounded-full border border-[#c6e1e8] bg-white/70 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-teal-800 sm:inline-flex">
+              Approved use
+            </span>
+          ) : null}
+          <div className={cn("rounded-full border px-3.5 py-2", userChipClass)}>
             <div className="text-sm font-medium tracking-[-0.01em] text-slate-900">
               {variant === "admin" ? "Admin preview · Nina Patel" : "Employee preview · Daniel Scott"}
             </div>

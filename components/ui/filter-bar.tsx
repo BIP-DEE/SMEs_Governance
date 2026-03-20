@@ -35,7 +35,7 @@ export function FilterBar({
           {filters.map((filter) => (
             <button
               key={filter}
-              className="inline-flex h-10 items-center whitespace-nowrap rounded-[14px] border border-slate-200/80 bg-white/74 px-3.5 text-sm font-medium text-slate-600 shadow-[0_6px_18px_rgba(15,23,42,0.04)] transition hover:-translate-y-[1px] hover:border-slate-300 hover:bg-white hover:text-slate-900"
+              className="inline-flex h-10 items-center whitespace-nowrap rounded-[14px] border border-[#c8deea]/90 bg-[linear-gradient(180deg,rgba(248,252,255,0.92),rgba(237,247,251,0.82))] px-3.5 text-sm font-medium text-slate-600 shadow-[0_6px_18px_rgba(28,65,118,0.04)] transition hover:-translate-y-[1px] hover:border-[#9dc8df] hover:text-slate-900"
             >
               {filter}
             </button>

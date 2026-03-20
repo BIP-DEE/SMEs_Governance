@@ -5,6 +5,7 @@ export type NavItem = {
   href: string;
   icon: AppIconName;
   badge?: string;
+  hint?: string;
 };
 
 export type NavSection = {
@@ -14,26 +15,26 @@ export type NavSection = {
 
 export const adminSections: NavSection[] = [
   {
-    label: "Command",
+    label: "Today",
     items: [
-      { name: "Overview", href: "/dashboard", icon: "dashboard" },
-      { name: "AI register", href: "/inventory", icon: "inventory" },
-      { name: "Requests", href: "/requests", icon: "requests", badge: "8" },
+      { name: "Overview", href: "/dashboard", icon: "dashboard", hint: "Current priorities" },
     ],
   },
   {
-    label: "Enablement",
+    label: "Workflow",
     items: [
-      { name: "Policies", href: "/policies", icon: "policies" },
-      { name: "Training", href: "/training", icon: "training" },
+      { name: "Register", href: "/inventory", icon: "inventory", hint: "AI register" },
+      { name: "Review", href: "/requests", icon: "requests", badge: "8", hint: "Requests queue" },
+      { name: "Enable", href: "/policies", icon: "policies", hint: "Policies" },
+      { name: "Training", href: "/training", icon: "training", hint: "Assigned learning" },
+      { name: "Monitor", href: "/monitoring", icon: "monitoring", hint: "Activity" },
+      { name: "Report", href: "/reports", icon: "reports", hint: "Audit exports" },
     ],
   },
   {
-    label: "Oversight",
+    label: "Workspace",
     items: [
-      { name: "Monitoring", href: "/monitoring", icon: "monitoring" },
-      { name: "Reports", href: "/reports", icon: "reports" },
-      { name: "Users", href: "/users", icon: "users" },
+      { name: "People", href: "/users", icon: "users", hint: "Owners and reviewers" },
     ],
   },
 ];
@@ -42,17 +43,17 @@ export const employeeSections: NavSection[] = [
   {
     label: "Start",
     items: [
-      { name: "Home", href: "/employee", icon: "home" },
-      { name: "AI workspace", href: "/employee/workspace", icon: "workspace" },
-      { name: "My requests", href: "/employee/requests", icon: "requests" },
+      { name: "Home", href: "/employee", icon: "home", hint: "Today" },
+      { name: "Workspace", href: "/employee/workspace", icon: "workspace", hint: "Approved AI" },
+      { name: "Requests", href: "/employee/requests", icon: "requests", hint: "Approval status" },
     ],
   },
   {
     label: "Guidance",
     items: [
-      { name: "Policies", href: "/employee/policies", icon: "policies" },
-      { name: "Training", href: "/employee/training", icon: "training" },
-      { name: "Activity", href: "/employee/activity", icon: "activity" },
+      { name: "Policies", href: "/employee/policies", icon: "policies", hint: "What is allowed" },
+      { name: "Training", href: "/employee/training", icon: "training", hint: "Assigned modules" },
+      { name: "Activity", href: "/employee/activity", icon: "activity", hint: "Recent actions" },
     ],
   },
 ];
@@ -74,47 +75,47 @@ export const workspaceSwitch = [
 
 export const pageMeta: Record<string, { section: string; title: string; subtitle: string }> = {
   "/dashboard": {
-    section: "Command",
+    section: "Today",
     title: "Governance overview",
     subtitle: "Stay focused on the few reviews, controls, and evidence gaps that matter today.",
   },
   "/inventory": {
-    section: "Command",
+    section: "Register",
     title: "AI register",
     subtitle: "Keep one structured record of tools, vendors, models, owners, and approved use.",
   },
   "/requests": {
-    section: "Command",
+    section: "Review",
     title: "Requests",
     subtitle: "Review new AI adoption in a clear flow with controls, owners, and decision history.",
   },
   "/policies": {
-    section: "Enablement",
+    section: "Enable",
     title: "Policies",
     subtitle: "Publish practical rules, keep acknowledgement visible, and connect policy to control.",
   },
   "/training": {
-    section: "Enablement",
+    section: "Training",
     title: "Training",
     subtitle: "Deliver lightweight governance training tied to approved AI behavior.",
   },
   "/monitoring": {
-    section: "Oversight",
+    section: "Monitor",
     title: "Monitoring",
     subtitle: "Track ongoing AI activity, highlight flags, and investigate with context.",
   },
   "/reports": {
-    section: "Oversight",
+    section: "Report",
     title: "Reports",
     subtitle: "Generate audit-ready exports with decision history and evidence coverage.",
   },
   "/users": {
-    section: "Oversight",
+    section: "Workspace",
     title: "Users",
     subtitle: "See owners, reviewers, and employee coverage across the AI governance program.",
   },
   "/settings": {
-    section: "Oversight",
+    section: "Workspace",
     title: "Settings",
     subtitle: "Manage workspace defaults, alert rules, retention, and rollout preferences.",
   },
