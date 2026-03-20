@@ -29,19 +29,16 @@ export function Topbar({ variant }: TopbarProps) {
 
   return (
     <header className="sticky top-0 z-20 px-4 pt-4 sm:px-6 lg:px-8">
-      <div className={cn(topbarClass, "flex min-h-[72px] items-center justify-between rounded-[22px] px-4 sm:px-5 lg:px-6")}>
-        <div className="pl-12 lg:pl-0">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-900/58">
+      <div className={cn(topbarClass, "flex min-h-[66px] items-center justify-between rounded-[22px] px-4 sm:px-5 lg:px-6")}>
+        <div className="min-w-0 pl-12 lg:pl-0">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-950/50">
             {variant === "admin" ? "Northstar Manufacturing" : "Employee workspace"}
           </div>
-          <div className="mt-1 flex flex-wrap items-start gap-3">
+          <div className="mt-1 flex min-w-0 flex-wrap items-center gap-3">
             <span className={cn("rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em]", sectionPillClass)}>
               {meta.section}
             </span>
-            <div className="min-w-0">
-              <div className="text-sm font-semibold tracking-[-0.02em] text-slate-950">{meta.title}</div>
-              {meta.subtitle ? <div className="hidden text-xs text-slate-500 sm:block">{meta.subtitle}</div> : null}
-            </div>
+            <div className="min-w-0 truncate text-sm font-semibold tracking-[-0.02em] text-slate-950">{meta.title}</div>
           </div>
         </div>
 
@@ -52,14 +49,12 @@ export function Topbar({ variant }: TopbarProps) {
               <span className="hidden sm:inline">Settings</span>
             </Button>
           ) : null}
-          {variant === "employee" ? (
-            <span className="hidden rounded-full border border-[#c6e1e8] bg-white/70 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-teal-800 sm:inline-flex">
-              Approved use
-            </span>
-          ) : null}
           <div className={cn("rounded-full border px-3.5 py-2", userChipClass)}>
             <div className="text-sm font-medium tracking-[-0.01em] text-slate-900">
-              {variant === "admin" ? "Admin preview · Nina Patel" : "Employee preview · Daniel Scott"}
+              {variant === "admin" ? "Nina Patel" : "Daniel Scott"}
+            </div>
+            <div className="text-[11px] uppercase tracking-[0.16em] text-slate-500">
+              {variant === "admin" ? "Admin preview" : "Employee preview"}
             </div>
           </div>
         </div>

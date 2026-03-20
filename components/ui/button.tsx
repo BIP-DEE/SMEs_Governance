@@ -6,9 +6,9 @@ const variantMap = {
   primary:
     "border-transparent bg-[linear-gradient(135deg,#1d4ed8,#0f8fb8_58%,#0f766e)] text-white shadow-[0_18px_40px_rgba(29,78,216,0.24)] hover:-translate-y-[1px] hover:saturate-[1.08] hover:brightness-105 hover:shadow-[0_26px_52px_rgba(14,116,144,0.3)] focus-visible:ring-blue-500/24",
   secondary:
-    "border-[#aed6e7]/90 bg-[linear-gradient(180deg,rgba(246,252,255,0.92),rgba(232,246,250,0.82))] text-slate-800 shadow-[0_12px_30px_rgba(28,65,118,0.07)] hover:-translate-y-[1px] hover:border-[#83bfe0] hover:bg-[linear-gradient(180deg,rgba(250,254,255,0.98),rgba(236,248,252,0.88))] hover:text-slate-950 hover:shadow-[0_20px_38px_rgba(28,65,118,0.1)] focus-visible:ring-sky-600/12",
+    "border-[#9fcfe3]/95 bg-[linear-gradient(180deg,rgba(247,252,255,0.96),rgba(230,244,249,0.88))] text-slate-900 shadow-[0_12px_30px_rgba(28,65,118,0.08)] hover:-translate-y-[1px] hover:border-[#71b7d9] hover:bg-[linear-gradient(180deg,rgba(251,254,255,1),rgba(234,247,252,0.92))] hover:text-slate-950 hover:shadow-[0_20px_38px_rgba(28,65,118,0.12)] focus-visible:ring-sky-600/14",
   ghost:
-    "border-transparent bg-transparent text-slate-600 shadow-none hover:bg-[rgba(224,242,255,0.72)] hover:text-slate-950 focus-visible:ring-sky-700/8",
+    "border-transparent bg-transparent text-slate-700 shadow-none hover:bg-[rgba(216,239,251,0.82)] hover:text-slate-950 focus-visible:ring-sky-700/10",
 };
 
 const sizeMap = {

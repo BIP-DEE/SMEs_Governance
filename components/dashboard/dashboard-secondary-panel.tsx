@@ -11,15 +11,15 @@ const workflowItems = [
   {
     id: "review",
     label: "Supplier review assistant",
-    detail: "Waiting for retention evidence before final approval.",
+    detail: "Retention evidence missing before sign-off.",
     href: "/requests",
     icon: "requests" as const,
     stage: "Review",
   },
   {
     id: "register",
-    label: "Three new tools need owners and review dates",
-    detail: "The register is missing ownership detail on recent additions.",
+    label: "Three new tools need owners",
+    detail: "Recent register entries still need ownership and review dates.",
     href: "/inventory",
     icon: "inventory" as const,
     stage: "Register",
@@ -34,7 +34,7 @@ const workflowItems = [
   },
   {
     id: "monitor",
-    label: "One flagged workspace event still needs review",
+    label: "One flagged workspace event is open",
     detail: "Monitoring already has the log context attached.",
     href: "/monitoring",
     icon: "monitoring" as const,
@@ -73,8 +73,8 @@ const evidenceItems = [
 ];
 
 const tabs = [
-  { id: "workflow", label: "Queue", count: 4 },
-  { id: "updates", label: "Updates", count: 2 },
+  { id: "workflow", label: "Blocked", count: 4 },
+  { id: "updates", label: "Changed", count: 2 },
   { id: "evidence", label: "Evidence", count: 2 },
 ];
 
@@ -86,8 +86,8 @@ export function DashboardSecondaryPanel() {
       <CardHeader className="space-y-4 border-b border-[#c8e0ea]/80">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="space-y-2">
-            <Badge className="w-fit">Secondary detail</Badge>
-            <CardTitle className="text-[1.3rem]">Keep the extra context one click below the main view.</CardTitle>
+            <Badge className="w-fit">Open detail</Badge>
+            <CardTitle className="text-[1.24rem]">Check only what is blocked, changed, or needed for evidence.</CardTitle>
           </div>
           <Tabs items={tabs} activeTab={activeTab} onChange={setActiveTab} />
         </div>
@@ -100,7 +100,7 @@ export function DashboardSecondaryPanel() {
               <Link
                 key={item.id}
                 href={item.href}
-                className="surface-card-soft interactive-card flex items-start gap-4 rounded-[22px] px-4 py-4"
+                className="surface-card-soft interactive-card flex items-center gap-4 rounded-[22px] px-4 py-4"
               >
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[16px] border border-[#c2dfe0] bg-[rgba(240,250,248,0.8)] text-slate-900">
                   <AppIcon name={item.icon} className="h-4 w-4" />
@@ -110,9 +110,9 @@ export function DashboardSecondaryPanel() {
                     <Badge tone="info">{item.stage}</Badge>
                     <div className="text-sm font-semibold text-slate-950">{item.label}</div>
                   </div>
-                  <div className="mt-1 text-sm leading-6 text-slate-500">{item.detail}</div>
+                  <div className="mt-1 text-sm text-slate-600">{item.detail}</div>
                 </div>
-                <span className="mt-1 text-slate-400 transition group-hover:text-slate-700">
+                <span className="shrink-0 text-slate-400 transition group-hover:text-slate-700">
                   <AppIcon name="arrow-right" className="h-4 w-4" />
                 </span>
               </Link>
@@ -130,7 +130,7 @@ export function DashboardSecondaryPanel() {
                   </Badge>
                   <div className="space-y-1">
                     <div className="text-sm font-semibold text-slate-950">{item.title}</div>
-                    <div className="text-sm leading-6 text-slate-500">{item.detail}</div>
+                    <div className="text-sm text-slate-600">{item.detail}</div>
                   </div>
                 </div>
               </div>
@@ -152,7 +152,7 @@ export function DashboardSecondaryPanel() {
                     <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Reports</span>
                   </div>
                   <div className="text-sm font-semibold text-slate-950">{item.title}</div>
-                  <div className="text-sm leading-6 text-slate-500">{item.detail}</div>
+                  <div className="text-sm text-slate-600">{item.detail}</div>
                 </div>
                 <span className="shrink-0 text-sm font-medium text-slate-700">{item.action}</span>
               </Link>

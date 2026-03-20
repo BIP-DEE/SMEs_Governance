@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ProductBrand } from "@/components/brand/product-brand";
@@ -84,13 +85,43 @@ function NavLink({
 
 export function Sidebar({ variant = "admin" }: SidebarProps) {
   const pathname = usePathname();
-  const { sidebarCollapsed, mobileSidebarOpen, closeMobileSidebar } = useUi();
+  const {
+    sidebarCollapsed,
+    mobileSidebarOpen,
+    closeMobileSidebar,
+    sidebarScrollPositions,
+    setSidebarScrollPosition,
+  } = useUi();
   const sections = variant === "admin" ? adminSections : employeeSections;
   const collapsed = sidebarCollapsed;
+  const scrollRef = useRef<HTMLDivElement | null>(null);
   const sidebarSurfaceClass = variant === "admin" ? "surface-sidebar-admin" : "surface-sidebar-employee";
   const workspaceLabel = variant === "admin" ? "Northstar Manufacturing" : "Employee workspace";
   const workspaceSubLabel =
     variant === "admin" ? "Governance control center" : "Approved internal workspace";
+  const storedScrollPosition = sidebarScrollPositions[variant];
+
+  useEffect(() => {
+    const node = scrollRef.current;
+    if (!node) {
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      node.scrollTop = storedScrollPosition;
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [pathname, storedScrollPosition]);
+
+  const handleSelect = () => {
+    const node = scrollRef.current;
+    if (node) {
+      setSidebarScrollPosition(variant, node.scrollTop);
+    }
+
+    closeMobileSidebar();
+  };
 
   return (
     <>
@@ -128,7 +159,11 @@ export function Sidebar({ variant = "admin" }: SidebarProps) {
             </div>
           ) : null}
 
-          <div className="scrollbar-none flex-1 overflow-y-auto px-1">
+          <div
+            ref={scrollRef}
+            onScroll={(event) => setSidebarScrollPosition(variant, event.currentTarget.scrollTop)}
+            className="scrollbar-none flex-1 overflow-y-auto overscroll-contain px-1"
+          >
             {sections.map((section) => (
               <section key={section.label} className="mb-5">
                 {!collapsed ? (
@@ -143,7 +178,7 @@ export function Sidebar({ variant = "admin" }: SidebarProps) {
                       item={item}
                       collapsed={collapsed}
                       active={isActivePath(pathname, item.href)}
-                      onSelect={closeMobileSidebar}
+                      onSelect={handleSelect}
                     />
                   ))}
                 </div>
@@ -165,7 +200,7 @@ export function Sidebar({ variant = "admin" }: SidebarProps) {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={closeMobileSidebar}
+                    onClick={handleSelect}
                     title={collapsed ? item.label : undefined}
                     className={cn(
                       "group flex items-center rounded-[18px] border transition-all duration-200 ease-out",

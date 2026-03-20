@@ -2,11 +2,11 @@ import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 const toneMap = {
-  neutral: "border-[#b7d8e6] bg-[linear-gradient(180deg,rgba(238,248,255,0.96),rgba(231,244,248,0.82))] text-slate-700",
-  info: "border-sky-300/90 bg-[linear-gradient(180deg,rgba(236,248,255,0.96),rgba(221,242,255,0.84))] text-sky-800",
-  success: "border-emerald-300/90 bg-[linear-gradient(180deg,rgba(237,252,246,0.96),rgba(223,247,239,0.84))] text-emerald-800",
-  warning: "border-amber-300/90 bg-[linear-gradient(180deg,rgba(255,248,230,0.96),rgba(255,240,208,0.84))] text-amber-800",
-  danger: "border-rose-300/90 bg-[linear-gradient(180deg,rgba(255,240,244,0.96),rgba(255,228,235,0.84))] text-rose-800",
+  neutral: "border-[#a8d1e2] bg-[linear-gradient(180deg,rgba(239,248,255,0.98),rgba(226,241,247,0.86))] text-slate-800",
+  info: "border-sky-300/95 bg-[linear-gradient(180deg,rgba(234,247,255,0.98),rgba(214,239,255,0.88))] text-sky-900",
+  success: "border-emerald-300/95 bg-[linear-gradient(180deg,rgba(237,252,246,0.98),rgba(217,245,233,0.88))] text-emerald-900",
+  warning: "border-amber-300/95 bg-[linear-gradient(180deg,rgba(255,248,230,0.98),rgba(255,236,199,0.9))] text-amber-900",
+  danger: "border-rose-300/95 bg-[linear-gradient(180deg,rgba(255,240,244,0.98),rgba(255,223,232,0.9))] text-rose-900",
 };
 
 type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
