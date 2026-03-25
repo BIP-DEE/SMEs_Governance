@@ -7,18 +7,18 @@ import { Button } from "@/components/ui/button";
 const pillars = [
   {
     label: "Register",
-    title: "Build one living record of company AI use.",
-    detail: "Tools, vendors, owners, approvals, and review dates stay tied together.",
+    title: "Track every tool and use case in one record.",
+    detail: "Vendors, owners, approvals, and review dates stay connected.",
   },
   {
     label: "Guide",
-    title: "Turn policy and training into the operating path.",
-    detail: "Employees see approved routes first instead of hunting through separate guidance.",
+    title: "Make policy and training part of the path.",
+    detail: "Approved routes stay visible before employees start using AI.",
   },
   {
     label: "Evidence",
-    title: "Carry oversight forward into reporting.",
-    detail: "Decisions, activity, and audit history stay connected when evidence is needed.",
+    title: "Keep evidence ready when reporting starts.",
+    detail: "Decisions, activity, and audit history remain attached.",
   },
 ];
 
@@ -58,14 +58,14 @@ const workflow = [
 const routes = [
   {
     title: "Admin control center",
-    detail: "Run review, rollout, monitoring, and evidence from one structured workspace.",
+    detail: "Review, rollout, monitoring, and evidence in one operational view.",
     action: "Preview admin",
     href: "/dashboard",
     icon: "dashboard" as const,
   },
   {
     title: "Employee workspace",
-    detail: "Start with approved AI use, then reveal requests, training, and guidance only when needed.",
+    detail: "Start with approved AI use, then reveal requests and guidance only when needed.",
     action: "Preview employee",
     href: "/employee",
     icon: "workspace" as const,
@@ -116,30 +116,20 @@ export default function LandingPage() {
       </header>
 
       <main className="pb-24">
-        <section className="px-4 pb-8 pt-8 sm:px-6 lg:px-8 lg:pb-12 lg:pt-10">
-          <div className="landing-hero-shell mx-auto max-w-[1440px] overflow-hidden rounded-[42px] px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
-            <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_600px] xl:items-center">
+        <section className="px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pt-10">
+          <div className="landing-stage-shell mx-auto max-w-[1440px] overflow-hidden rounded-[42px] px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
+            <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_600px] xl:items-center xl:gap-14">
               <div className="animate-rise-in max-w-[640px] space-y-8">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-cyan-300/18 bg-cyan-300/8 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-100">
-                    AI governance for SMEs
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70">
-                    One governed operating layer
-                  </span>
-                </div>
-
-                <div className="space-y-4">
-                  <h1 className="max-w-4xl text-balance text-[3.35rem] font-semibold tracking-[-0.085em] text-white sm:text-[4.85rem]">
-                    Put every AI tool, request, and decision inside one{" "}
-                    <span className="bg-[linear-gradient(135deg,#7dd3fc,#22d3ee_56%,#2dd4bf)] bg-clip-text text-transparent">
-                      governed path
+                <div className="space-y-5">
+                  <h1 className="max-w-3xl text-balance text-[3rem] font-semibold tracking-[-0.085em] text-white sm:text-[4.65rem]">
+                    Empowering
+                    <br />
+                    <span className="bg-[linear-gradient(135deg,#dff8ff,#7dd3fc_38%,#22d3ee_72%,#2dd4bf)] bg-clip-text text-transparent">
+                      Responsible AI
                     </span>
-                    .
                   </h1>
-                  <p className="max-w-2xl text-lg leading-8 text-white/72 sm:text-[1.08rem]">
-                    Sentryn gives growing companies a control layer for registration, review,
-                    enablement, monitoring, and evidence without spreading governance across sheets, inboxes, and static docs.
+                  <p className="max-w-xl text-[1.02rem] leading-8 text-white/72 sm:text-[1.08rem]">
+                    A control layer for AI monitoring and evidence without spreading governance across sheets, inboxes, and static docs.
                   </p>
                 </div>
 
@@ -157,6 +147,8 @@ export default function LandingPage() {
               <div className="animate-rise-in relative h-[440px] sm:h-[520px] xl:h-[560px]">
                 <div className="absolute inset-0">
                   <div className="landing-visual-shell absolute inset-0 rounded-[34px]" />
+                  <div className="absolute inset-x-[12%] top-[16%] h-28 rounded-full bg-cyan-300/12 blur-3xl" />
+                  <div className="absolute inset-x-[28%] bottom-[14%] h-24 rounded-full bg-sky-400/10 blur-3xl" />
                   <div className="absolute inset-0 opacity-18 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:40px_40px]" />
 
                   <svg
@@ -183,7 +175,7 @@ export default function LandingPage() {
                       </linearGradient>
                     </defs>
 
-                    <circle cx="300" cy="280" r="168" stroke="rgba(125,211,252,0.12)" strokeWidth="1.5" className="animate-pulse-ring origin-center" />
+                    <circle cx="300" cy="280" r="178" stroke="rgba(125,211,252,0.14)" strokeWidth="1.5" className="animate-pulse-ring origin-center" />
                     <circle cx="300" cy="280" r="118" stroke="rgba(34,211,238,0.18)" strokeWidth="1.5" />
                     <circle cx="300" cy="280" r="72" fill="url(#heroCore)" />
 
@@ -239,132 +231,117 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        <section className="px-4 pb-12 sm:px-6 lg:px-8">
-          <div className="mx-auto flex max-w-[1440px] flex-wrap gap-3">
-            {trustStrip.map(([value, label]) => (
-              <div key={label} className="landing-proof-chip rounded-full px-4 py-3">
-                <span className="text-sm font-semibold tracking-[-0.02em] text-white">{value}</span>
-                <span className="ml-2 text-sm text-white/68">{label}</span>
+            <div className="mt-12 flex flex-wrap gap-3 border-t border-white/10 pt-8">
+              {trustStrip.map(([value, label]) => (
+                <div key={label} className="landing-proof-chip rounded-full px-4 py-3">
+                  <span className="text-sm font-semibold tracking-[-0.02em] text-white">{value}</span>
+                  <span className="ml-2 text-sm text-white/68">{label}</span>
+                </div>
+              ))}
+            </div>
+
+            <section id="platform" className="landing-section-anchor pt-14">
+              <div className="max-w-2xl space-y-3">
+                <Badge className="border-cyan-300/16 bg-cyan-300/8 text-cyan-100">Platform</Badge>
+                <h2 className="text-balance text-[2.2rem] font-semibold tracking-[-0.06em] text-white sm:text-[2.7rem]">
+                  Core governance capabilities.
+                </h2>
               </div>
-            ))}
-          </div>
-        </section>
 
-        <section id="platform" className="landing-section-anchor px-4 py-12 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-[1440px] space-y-7">
-            <div className="max-w-2xl space-y-3">
-              <Badge className="border-cyan-300/16 bg-cyan-300/8 text-cyan-100">Platform</Badge>
-              <h2 className="text-balance text-[2.2rem] font-semibold tracking-[-0.06em] text-white sm:text-[2.7rem]">
-                Three connected jobs, one product spine.
-              </h2>
-              <p className="text-base leading-7 text-white/66">
-                Keep governance visible without turning the product story into a wall of explanation.
-              </p>
-            </div>
-
-            <div className="grid gap-4 xl:grid-cols-3">
-              {pillars.map((pillar) => (
-                <div key={pillar.label} className="landing-surface interactive-card rounded-[30px] px-6 py-6">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-100/72">
-                    {pillar.label}
-                  </div>
-                  <div className="mt-4 text-[1.18rem] font-semibold tracking-[-0.03em] text-white">
-                    {pillar.title}
-                  </div>
-                  <p className="mt-3 text-sm leading-6 text-white/66">{pillar.detail}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="workflow" className="landing-section-anchor px-4 py-12 sm:px-6 lg:px-8">
-          <div className="landing-surface mx-auto max-w-[1440px] rounded-[36px] px-6 py-7 sm:px-8">
-            <div className="max-w-2xl space-y-3">
-              <Badge className="border-cyan-300/16 bg-cyan-300/8 text-cyan-100">Workflow</Badge>
-              <h2 className="text-balance text-[2.2rem] font-semibold tracking-[-0.06em] text-white sm:text-[2.6rem]">
-                Register, review, enable, monitor, report.
-              </h2>
-              <p className="max-w-xl text-base leading-7 text-white/68">
-                The governance flow stays explicit from first registration through final evidence.
-              </p>
-            </div>
-
-            <div className="mt-7 grid gap-3 lg:grid-cols-5">
-              {workflow.map((item, index) => (
-                <Link
-                  key={item.step}
-                  href={item.href}
-                  className="landing-step-card interactive-card-dark rounded-[24px] px-4 py-4 text-white"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-100/72">
-                      {String(index + 1).padStart(2, "0")}
+              <div className="mt-7 grid gap-4 xl:grid-cols-3">
+                {pillars.map((pillar) => (
+                  <div key={pillar.label} className="landing-edge-card interactive-card rounded-[30px] px-6 py-6">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-100/72">
+                      {pillar.label}
                     </div>
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cyan-100/68">
-                      {item.meta}
+                    <div className="mt-4 text-[1.18rem] font-semibold tracking-[-0.03em] text-white">
+                      {pillar.title}
                     </div>
+                    <p className="mt-3 text-sm leading-6 text-white/66">{pillar.detail}</p>
                   </div>
-                  <div className="mt-3 text-base font-semibold tracking-[-0.02em] text-white">{item.step}</div>
-                  <div className="mt-2 text-sm leading-6 text-white/68">{item.detail}</div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+                ))}
+              </div>
+            </section>
 
-        <section id="routes" className="landing-section-anchor px-4 py-12 sm:px-6 lg:px-8">
-          <div className="mx-auto grid max-w-[1440px] gap-6 xl:grid-cols-[320px_minmax(0,1fr)] xl:items-start">
-            <div className="space-y-3">
-              <Badge className="border-cyan-300/16 bg-cyan-300/8 text-cyan-100">Routes</Badge>
-              <h2 className="text-balance text-[2.2rem] font-semibold tracking-[-0.06em] text-white sm:text-[2.6rem]">
-                Two entry routes, one product language.
-              </h2>
-              <p className="text-base leading-7 text-white/66">
-                Admins get a control center. Employees get a calmer approved workspace.
-              </p>
-            </div>
+            <section id="workflow" className="landing-section-anchor pt-14">
+              <div className="max-w-2xl space-y-3">
+                <Badge className="border-cyan-300/16 bg-cyan-300/8 text-cyan-100">Workflow</Badge>
+                <h2 className="text-balance text-[2.2rem] font-semibold tracking-[-0.06em] text-white sm:text-[2.6rem]">
+                  One path from request to evidence.
+                </h2>
+              </div>
 
-            <div className="grid gap-4 lg:grid-cols-2">
-              {routes.map((route) => (
-                <div key={route.title} className="landing-surface-soft interactive-card rounded-[30px] px-6 py-6">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-[18px] border border-cyan-300/14 bg-white/6 text-cyan-100">
-                      <AppIcon name={route.icon} className="h-5 w-5" />
-                    </div>
-                    <div className="text-[1.14rem] font-semibold tracking-[-0.03em] text-white">{route.title}</div>
-                  </div>
-                  <p className="mt-4 max-w-sm text-sm leading-6 text-white/66">{route.detail}</p>
+              <div className="mt-7 grid gap-3 lg:grid-cols-5">
+                {workflow.map((item, index) => (
                   <Link
-                    href={route.href}
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-cyan-100 transition hover:text-white"
+                    key={item.step}
+                    href={item.href}
+                    className="landing-edge-card landing-step-card interactive-card-dark rounded-[24px] px-4 py-4 text-white"
                   >
-                    {route.action}
-                    <AppIcon name="arrow-right" className="h-4 w-4" />
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-100/72">
+                        {String(index + 1).padStart(2, "0")}
+                      </div>
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cyan-100/68">
+                        {item.meta}
+                      </div>
+                    </div>
+                    <div className="mt-3 text-base font-semibold tracking-[-0.02em] text-white">{item.step}</div>
+                    <div className="mt-2 text-sm leading-6 text-white/68">{item.detail}</div>
                   </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+                ))}
+              </div>
+            </section>
 
-        <section className="px-4 pt-6 sm:px-6 lg:px-8">
-          <div className="landing-surface mx-auto grid max-w-[1440px] gap-5 rounded-[34px] px-6 py-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
-            <div className="space-y-3">
-              <Badge className="border-cyan-300/16 bg-cyan-300/8 text-cyan-100">Guided preview</Badge>
-              <h2 className="max-w-2xl text-balance text-[2rem] font-semibold tracking-[-0.06em] text-white sm:text-[2.35rem]">
-                Start inside the governed flow instead of landing in a crowded workspace.
-              </h2>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Button href="/demo">Start session</Button>
-              <Button variant="secondary" href="#platform">
-                Explore platform
-              </Button>
-            </div>
+            <section id="routes" className="landing-section-anchor pt-14">
+              <div className="grid gap-6 xl:grid-cols-[320px_minmax(0,1fr)] xl:items-start">
+                <div className="space-y-3">
+                  <Badge className="border-cyan-300/16 bg-cyan-300/8 text-cyan-100">Routes</Badge>
+                  <h2 className="text-balance text-[2.2rem] font-semibold tracking-[-0.06em] text-white sm:text-[2.6rem]">
+                    Two routes. One governed product.
+                  </h2>
+                </div>
+
+                <div className="grid gap-4 lg:grid-cols-2">
+                  {routes.map((route) => (
+                    <div key={route.title} className="landing-edge-card interactive-card rounded-[30px] px-6 py-6">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-[18px] border border-cyan-300/14 bg-white/6 text-cyan-100">
+                          <AppIcon name={route.icon} className="h-5 w-5" />
+                        </div>
+                        <div className="text-[1.14rem] font-semibold tracking-[-0.03em] text-white">{route.title}</div>
+                      </div>
+                      <p className="mt-4 max-w-sm text-sm leading-6 text-white/66">{route.detail}</p>
+                      <Link
+                        href={route.href}
+                        className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-cyan-100 transition hover:text-white"
+                      >
+                        {route.action}
+                        <AppIcon name="arrow-right" className="h-4 w-4" />
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section className="pt-14">
+              <div className="flex flex-col gap-6 border-t border-white/10 pt-8 lg:flex-row lg:items-center lg:justify-between">
+                <div className="space-y-3">
+                  <Badge className="border-cyan-300/16 bg-cyan-300/8 text-cyan-100">Guided preview</Badge>
+                  <h2 className="max-w-2xl text-balance text-[2rem] font-semibold tracking-[-0.06em] text-white sm:text-[2.35rem]">
+                    Start inside the governed flow instead of landing in a crowded workspace.
+                  </h2>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Button href="/demo">Start session</Button>
+                  <Button variant="secondary" href="#platform">
+                    Explore platform
+                  </Button>
+                </div>
+              </div>
+            </section>
           </div>
         </section>
       </main>

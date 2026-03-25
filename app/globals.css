@@ -259,25 +259,51 @@ select {
     backdrop-filter: blur(18px);
   }
 
+  .landing-stage-shell {
+    position: relative;
+    background:
+      radial-gradient(circle at 14% 10%, rgba(56, 189, 248, 0.16), transparent 22%),
+      radial-gradient(circle at 84% 12%, rgba(45, 212, 191, 0.14), transparent 24%),
+      radial-gradient(circle at 68% 48%, rgba(34, 211, 238, 0.08), transparent 30%),
+      linear-gradient(180deg, rgba(8, 20, 40, 0.98), rgba(7, 18, 33, 0.98) 58%, rgba(6, 16, 28, 0.99));
+    border: 1px solid rgba(144, 203, 225, 0.14);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 34px 76px rgba(4, 16, 35, 0.42);
+    backdrop-filter: blur(24px);
+  }
+
+  .landing-stage-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 18%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 22%);
+  }
+
   .landing-surface {
     background:
-      radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 24%),
-      linear-gradient(180deg, rgba(12, 28, 49, 0.94), rgba(9, 22, 40, 0.92));
-    border: 1px solid rgba(144, 203, 225, 0.1);
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 24%),
+      radial-gradient(circle at top right, rgba(45, 212, 191, 0.09), transparent 20%),
+      linear-gradient(180deg, rgba(11, 27, 48, 0.95), rgba(8, 20, 37, 0.94));
+    border: 1px solid rgba(144, 203, 225, 0.12);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 24px 54px rgba(4, 16, 35, 0.3);
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 24px 54px rgba(4, 16, 35, 0.34);
     backdrop-filter: blur(18px);
   }
 
   .landing-surface-soft {
     background:
-      radial-gradient(circle at top left, rgba(45, 212, 191, 0.1), transparent 24%),
-      linear-gradient(180deg, rgba(15, 31, 53, 0.86), rgba(11, 24, 42, 0.82));
-    border: 1px solid rgba(144, 203, 225, 0.08);
+      radial-gradient(circle at top left, rgba(45, 212, 191, 0.12), transparent 24%),
+      radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 22%),
+      linear-gradient(180deg, rgba(14, 29, 51, 0.9), rgba(10, 22, 39, 0.86));
+    border: 1px solid rgba(144, 203, 225, 0.1);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 20px 42px rgba(4, 16, 35, 0.24);
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 20px 42px rgba(4, 16, 35, 0.28);
     backdrop-filter: blur(16px);
   }
 
@@ -293,13 +319,75 @@ select {
 
   .landing-step-card {
     background:
-      radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 24%),
-      linear-gradient(180deg, rgba(20, 43, 68, 0.72), rgba(13, 30, 50, 0.8));
-    border: 1px solid rgba(150, 209, 231, 0.1);
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.14), transparent 24%),
+      radial-gradient(circle at bottom right, rgba(45, 212, 191, 0.08), transparent 20%),
+      linear-gradient(180deg, rgba(19, 42, 67, 0.78), rgba(11, 26, 44, 0.84));
+    border: 1px solid rgba(150, 209, 231, 0.12);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 18px 34px rgba(4, 16, 35, 0.18);
+      0 18px 34px rgba(4, 16, 35, 0.22);
     backdrop-filter: blur(14px);
+  }
+
+  .landing-edge-card,
+  .landing-edge-panel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .landing-edge-card {
+    border: 1px solid rgba(150, 209, 231, 0.12);
+    background:
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 24%),
+      radial-gradient(circle at bottom right, rgba(45, 212, 191, 0.06), transparent 22%),
+      linear-gradient(180deg, rgba(17, 35, 58, 0.9), rgba(10, 24, 42, 0.88));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 18px 34px rgba(4, 16, 35, 0.22);
+    backdrop-filter: blur(14px);
+  }
+
+  .landing-edge-card::before,
+  .landing-edge-panel::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background:
+      linear-gradient(135deg, rgba(103, 232, 249, 0.72), rgba(34, 211, 238, 0.06) 30%, rgba(45, 212, 191, 0.45) 70%, rgba(255, 255, 255, 0.04));
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.88;
+    pointer-events: none;
+  }
+
+  .landing-edge-card::after,
+  .landing-edge-panel::after {
+    content: "";
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: -28px;
+    height: 68px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.34), rgba(45, 212, 191, 0.12) 48%, transparent 72%);
+    filter: blur(18px);
+    opacity: 0.72;
+    pointer-events: none;
+  }
+
+  .landing-edge-card:hover::before,
+  .landing-edge-panel:hover::before {
+    opacity: 1;
+  }
+
+  .landing-edge-card:hover::after,
+  .landing-edge-panel:hover::after {
+    opacity: 0.92;
   }
 
   .landing-section-anchor {
@@ -387,7 +475,7 @@ select {
     box-shadow:
       0 28px 54px rgba(28, 65, 118, 0.13),
       inset 0 1px 0 rgba(255, 255, 255, 0.78);
-    border-color: rgba(96, 165, 250, 0.48);
+    border-color: rgba(96, 165, 250, 0.52);
   }
 
   .interactive-card-dark {
@@ -402,9 +490,9 @@ select {
     transform: translateY(-3px);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 26px 56px rgba(8, 25, 48, 0.28);
-    border-color: rgba(125, 211, 252, 0.26);
-    background-color: rgba(255, 255, 255, 0.09);
+      0 28px 60px rgba(8, 25, 48, 0.32);
+    border-color: rgba(103, 232, 249, 0.38);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   .panel-dark-kicker {
