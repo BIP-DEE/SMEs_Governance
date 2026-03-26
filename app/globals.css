@@ -205,193 +205,416 @@ select {
       linear-gradient(180deg, rgba(244, 252, 251, 0.78), rgba(234, 247, 247, 0.54));
   }
 
-  .landing-hero-shell {
+  .landing-home-shell {
     background:
-      radial-gradient(circle at 12% 18%, rgba(56, 189, 248, 0.18), transparent 24%),
-      radial-gradient(circle at 86% 14%, rgba(45, 212, 191, 0.14), transparent 22%),
-      radial-gradient(circle at 78% 84%, rgba(59, 130, 246, 0.12), transparent 24%),
-      linear-gradient(135deg, rgba(8, 20, 43, 0.98), rgba(8, 40, 69, 0.96) 58%, rgba(8, 58, 74, 0.92));
-    border: 1px solid rgba(140, 203, 229, 0.14);
-    box-shadow:
-      0 34px 76px rgba(4, 16, 35, 0.42),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(24px);
+      radial-gradient(circle at 12% 0%, rgba(56, 189, 248, 0.1), transparent 18%),
+      radial-gradient(circle at 84% 8%, rgba(45, 212, 191, 0.08), transparent 18%),
+      radial-gradient(circle at 72% 46%, rgba(34, 211, 238, 0.06), transparent 24%),
+      linear-gradient(180deg, #08111d 0%, #0d1625 46%, #09111d 100%);
   }
 
-  .landing-visual-shell {
+  .landing-home-topbar {
+    border: 1px solid rgba(152, 209, 232, 0.12);
     background:
-      radial-gradient(circle at top left, rgba(59, 130, 246, 0.34), transparent 28%),
-      radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.28), transparent 32%),
-      linear-gradient(180deg, rgba(7, 24, 55, 0.98), rgba(10, 63, 84, 0.96));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.08),
-      0 36px 72px rgba(8, 29, 58, 0.28);
-  }
-
-  .landing-visual-card {
-    background:
-      radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 28%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.08),
-      0 22px 44px rgba(8, 25, 48, 0.2);
-    backdrop-filter: blur(18px);
-  }
-
-  .landing-page-shell {
-    background:
-      radial-gradient(circle at 12% -4%, rgba(29, 78, 216, 0.24), transparent 24%),
-      radial-gradient(circle at 88% 0%, rgba(20, 184, 166, 0.18), transparent 22%),
-      radial-gradient(circle at 68% 42%, rgba(56, 189, 248, 0.1), transparent 26%),
-      linear-gradient(180deg, #05101f 0%, #07172b 28%, #081728 62%, #07111e 100%);
-  }
-
-  .landing-header-shell {
-    background:
-      radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 28%),
-      linear-gradient(180deg, rgba(10, 23, 43, 0.94), rgba(9, 20, 39, 0.86));
-    border: 1px solid rgba(148, 208, 230, 0.12);
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 26%),
+      linear-gradient(180deg, rgba(14, 25, 42, 0.88), rgba(11, 20, 35, 0.82));
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 18px 40px rgba(4, 16, 35, 0.28);
-    backdrop-filter: blur(18px);
-  }
-
-  .landing-stage-shell {
-    position: relative;
-    background:
-      radial-gradient(circle at 14% 10%, rgba(56, 189, 248, 0.16), transparent 22%),
-      radial-gradient(circle at 84% 12%, rgba(45, 212, 191, 0.14), transparent 24%),
-      radial-gradient(circle at 68% 48%, rgba(34, 211, 238, 0.08), transparent 30%),
-      linear-gradient(180deg, rgba(8, 20, 40, 0.98), rgba(7, 18, 33, 0.98) 58%, rgba(6, 16, 28, 0.99));
-    border: 1px solid rgba(144, 203, 225, 0.14);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 34px 76px rgba(4, 16, 35, 0.42);
-    backdrop-filter: blur(24px);
-  }
-
-  .landing-stage-shell::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 18%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 22%);
-  }
-
-  .landing-surface {
-    background:
-      radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 24%),
-      radial-gradient(circle at top right, rgba(45, 212, 191, 0.09), transparent 20%),
-      linear-gradient(180deg, rgba(11, 27, 48, 0.95), rgba(8, 20, 37, 0.94));
-    border: 1px solid rgba(144, 203, 225, 0.12);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 24px 54px rgba(4, 16, 35, 0.34);
-    backdrop-filter: blur(18px);
-  }
-
-  .landing-surface-soft {
-    background:
-      radial-gradient(circle at top left, rgba(45, 212, 191, 0.12), transparent 24%),
-      radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 22%),
-      linear-gradient(180deg, rgba(14, 29, 51, 0.9), rgba(10, 22, 39, 0.86));
-    border: 1px solid rgba(144, 203, 225, 0.1);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 20px 42px rgba(4, 16, 35, 0.28);
+      0 18px 38px rgba(2, 8, 20, 0.22);
     backdrop-filter: blur(16px);
   }
 
-  .landing-proof-chip {
-    background:
-      radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 26%),
-      linear-gradient(180deg, rgba(18, 39, 63, 0.9), rgba(12, 29, 49, 0.84));
-    border: 1px solid rgba(150, 209, 231, 0.12);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 14px 30px rgba(4, 16, 35, 0.18);
+  .landing-home-navlink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.72);
+    transition:
+      color 180ms ease,
+      background-color 180ms ease;
   }
 
-  .landing-step-card {
-    background:
-      radial-gradient(circle at top left, rgba(56, 189, 248, 0.14), transparent 24%),
-      radial-gradient(circle at bottom right, rgba(45, 212, 191, 0.08), transparent 20%),
-      linear-gradient(180deg, rgba(19, 42, 67, 0.78), rgba(11, 26, 44, 0.84));
-    border: 1px solid rgba(150, 209, 231, 0.12);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 18px 34px rgba(4, 16, 35, 0.22);
-    backdrop-filter: blur(14px);
+  .landing-home-navlink:hover {
+    color: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.05);
   }
 
-  .landing-edge-card,
-  .landing-edge-panel {
+  .landing-home-link {
+    color: rgba(255, 255, 255, 0.72);
+    transition: color 180ms ease;
+  }
+
+  .landing-home-link:hover {
+    color: rgba(255, 255, 255, 0.96);
+  }
+
+  .landing-home-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(94, 247, 255, 0.46);
+    background: rgba(21, 39, 59, 0.56);
+    color: #77f7ff;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .landing-home-cta:hover {
+    transform: translateY(-1px);
+    border-color: rgba(124, 248, 255, 0.74);
+    background: rgba(25, 44, 66, 0.72);
+    color: #c4fdff;
+  }
+
+  .landing-home-kicker {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(174, 236, 255, 0.76);
+  }
+
+  .landing-home-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 182px;
+    height: 52px;
+    padding: 0 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background:
+      linear-gradient(180deg, rgba(87, 244, 250, 0.98), rgba(45, 222, 241, 0.94)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    color: #062033;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      0 16px 32px rgba(4, 16, 35, 0.28);
+    transition:
+      transform 180ms ease,
+      filter 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .landing-home-hero-cta:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.04) saturate(1.05);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.34),
+      0 22px 40px rgba(4, 16, 35, 0.32);
+  }
+
+  .landing-home-hero-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 170px;
+    height: 52px;
+    padding: 0 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(160, 210, 232, 0.16);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.84);
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .landing-home-hero-secondary:hover {
+    transform: translateY(-2px);
+    border-color: rgba(117, 214, 240, 0.28);
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.96);
+  }
+
+  .landing-home-proof {
+    border: 1px solid rgba(160, 212, 233, 0.12);
+    border-radius: 18px;
+    padding: 1rem 1rem 0.95rem;
+    background:
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 24%),
+      linear-gradient(180deg, rgba(19, 32, 50, 0.84), rgba(13, 22, 36, 0.84));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 14px 28px rgba(2, 8, 20, 0.18);
+  }
+
+  .landing-home-preview {
     position: relative;
     overflow: hidden;
-  }
-
-  .landing-edge-card {
-    border: 1px solid rgba(150, 209, 231, 0.12);
+    border-radius: 32px;
+    border: 1px solid rgba(164, 219, 238, 0.12);
     background:
       radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 24%),
-      radial-gradient(circle at bottom right, rgba(45, 212, 191, 0.06), transparent 22%),
-      linear-gradient(180deg, rgba(17, 35, 58, 0.9), rgba(10, 24, 42, 0.88));
+      radial-gradient(circle at bottom right, rgba(45, 212, 191, 0.1), transparent 24%),
+      linear-gradient(180deg, rgba(15, 28, 46, 0.96), rgba(11, 21, 35, 0.94));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 30px 70px rgba(2, 8, 20, 0.34);
+  }
+
+  .landing-home-preview-glow {
+    position: absolute;
+    inset: 18% 22%;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.2), rgba(45, 212, 191, 0.1) 42%, transparent 70%);
+    filter: blur(44px);
+  }
+
+  .landing-home-preview-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.16;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+
+  .landing-home-preview-chip {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 132px;
+    border-radius: 18px;
+    border: 1px solid rgba(162, 216, 235, 0.14);
+    background:
+      radial-gradient(circle at top left, rgba(45, 212, 191, 0.1), transparent 28%),
+      linear-gradient(180deg, rgba(24, 42, 63, 0.84), rgba(17, 29, 47, 0.84));
+    padding: 0.85rem 0.95rem;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 18px 30px rgba(2, 8, 20, 0.2);
+  }
+
+  .landing-home-chip-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(174, 236, 255, 0.72);
+  }
+
+  .landing-home-chip-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .landing-home-preview-core {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    z-index: 2;
+    width: min(100%, 300px);
+    transform: translate(-50%, -50%);
+    border-radius: 28px;
+    border: 1px solid rgba(176, 226, 242, 0.18);
+    background:
+      radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 28%),
+      linear-gradient(180deg, rgba(21, 38, 58, 0.96), rgba(13, 24, 39, 0.94));
+    padding: 1.45rem 1.3rem;
+    text-align: center;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 24px 48px rgba(2, 8, 20, 0.28);
+  }
+
+  .landing-home-core-kicker {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(167, 240, 255, 0.76);
+  }
+
+  .landing-home-core-title {
+    margin-top: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: white;
+  }
+
+  .landing-home-core-copy {
+    margin-top: 0.6rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  .landing-home-preview-card {
+    position: absolute;
+    z-index: 2;
+    min-width: 194px;
+    border-radius: 22px;
+    border: 1px solid rgba(165, 219, 237, 0.14);
+    background:
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.1), transparent 26%),
+      linear-gradient(180deg, rgba(24, 40, 60, 0.86), rgba(16, 28, 44, 0.86));
+    padding: 0.95rem 1rem;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 20px 34px rgba(2, 8, 20, 0.22);
+  }
+
+  .landing-home-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    border: 1px solid rgba(151, 221, 241, 0.16);
+    background: rgba(255, 255, 255, 0.04);
+    color: #89f7ff;
+  }
+
+  .landing-home-mini-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .landing-home-mini-copy {
+    margin-top: 0.2rem;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .landing-home-node {
+    position: absolute;
+    z-index: 1;
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background: #7cefff;
+    box-shadow:
+      0 0 0 8px rgba(124, 239, 255, 0.08),
+      0 0 24px rgba(92, 234, 255, 0.5);
+  }
+
+  .landing-home-anchor {
+    scroll-margin-top: 7rem;
+  }
+
+  .landing-home-surface {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid rgba(166, 217, 236, 0.14);
+    background:
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.1), transparent 24%),
+      linear-gradient(180deg, rgba(22, 36, 55, 0.88), rgba(14, 25, 40, 0.88));
+    padding: 1.35rem 1.25rem;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 18px 34px rgba(4, 16, 35, 0.22);
-    backdrop-filter: blur(14px);
+      0 20px 36px rgba(2, 8, 20, 0.2);
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
   }
 
-  .landing-edge-card::before,
-  .landing-edge-panel::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    padding: 1px;
+  .landing-home-surface:hover {
+    transform: translateY(-3px);
+    border-color: rgba(103, 232, 249, 0.28);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.07),
+      0 26px 42px rgba(2, 8, 20, 0.24);
+  }
+
+  .landing-home-surface-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(175, 235, 255, 0.72);
+  }
+
+  .landing-home-rail {
+    border-radius: 28px;
+    border: 1px solid rgba(163, 215, 235, 0.14);
     background:
-      linear-gradient(135deg, rgba(103, 232, 249, 0.72), rgba(34, 211, 238, 0.06) 30%, rgba(45, 212, 191, 0.45) 70%, rgba(255, 255, 255, 0.04));
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.88;
-    pointer-events: none;
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 22%),
+      linear-gradient(180deg, rgba(18, 31, 49, 0.84), rgba(12, 22, 36, 0.84));
+    padding: 1.6rem;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 22px 40px rgba(2, 8, 20, 0.2);
   }
 
-  .landing-edge-card::after,
-  .landing-edge-panel::after {
-    content: "";
-    position: absolute;
-    left: 18%;
-    right: 18%;
-    bottom: -28px;
-    height: 68px;
-    border-radius: 999px;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.34), rgba(45, 212, 191, 0.12) 48%, transparent 72%);
-    filter: blur(18px);
-    opacity: 0.72;
-    pointer-events: none;
+  .landing-home-step {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid rgba(164, 216, 236, 0.12);
+    background:
+      radial-gradient(circle at top left, rgba(34, 211, 238, 0.1), transparent 28%),
+      linear-gradient(180deg, rgba(28, 42, 60, 0.82), rgba(17, 29, 46, 0.82));
+    padding: 1rem;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
   }
 
-  .landing-edge-card:hover::before,
-  .landing-edge-panel:hover::before {
-    opacity: 1;
+  .landing-home-step:hover {
+    transform: translateY(-2px);
+    border-color: rgba(103, 232, 249, 0.26);
+    box-shadow: 0 18px 34px rgba(2, 8, 20, 0.22);
   }
 
-  .landing-edge-card:hover::after,
-  .landing-edge-panel:hover::after {
-    opacity: 0.92;
+  .landing-home-step-index {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(174, 236, 255, 0.74);
   }
 
-  .landing-section-anchor {
-    scroll-margin-top: 7rem;
+  .landing-home-route {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid rgba(164, 217, 237, 0.14);
+    background:
+      radial-gradient(circle at top left, rgba(45, 212, 191, 0.1), transparent 24%),
+      linear-gradient(180deg, rgba(22, 36, 54, 0.86), rgba(14, 24, 40, 0.86));
+    padding: 1.25rem;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .landing-home-route:hover {
+    transform: translateY(-2px);
+    border-color: rgba(103, 232, 249, 0.28);
+    box-shadow: 0 20px 36px rgba(2, 8, 20, 0.22);
+  }
+
+  .landing-home-footer-band {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 2rem;
   }
 
   .surface-dark {
