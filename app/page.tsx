@@ -72,74 +72,80 @@ const inlineFeatures = ["Inventory", "Approvals", "Monitoring", "Evidence"];
 export default function LandingPage() {
   return (
     <div className="landing-home-shell min-h-screen text-white">
-      <header className="sticky top-0 z-40 px-4 py-4 sm:px-6 lg:px-8">
-        <div className="landing-home-topbar mx-auto flex max-w-[1240px] items-center justify-between gap-4 rounded-[24px] px-4 py-3 sm:px-5">
-          <Link href="/" className="landing-home-brand min-w-0">
-            <ProductBrand context="sidebar" compact />
-            <span className="landing-home-wordmark">Sentryn</span>
-          </Link>
-
-          <nav className="hidden items-center gap-1 lg:flex">
-            {navLinks.map((item) =>
-              item.href.startsWith("/") ? (
-                <Link key={item.label} href={item.href} className="landing-home-navlink">
-                  {item.label}
-                </Link>
-              ) : (
-                <a key={item.label} href={item.href} className="landing-home-navlink">
-                  {item.label}
-                </a>
-              )
-            )}
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <Link href="/demo" className="landing-home-link landing-home-link-pill hidden sm:inline-flex">
-              Login
+      <header className="landing-home-header sticky top-0 z-40 px-4 pt-4 sm:px-6 lg:px-8">
+        <div className="landing-home-topbar-shell mx-auto max-w-[1280px]">
+          <div className="landing-home-topbar flex items-center justify-between gap-4 rounded-[28px] px-4 py-3 sm:px-5 sm:py-3.5">
+            <Link href="/" className="landing-home-brand min-w-0">
+              <ProductBrand context="sidebar" compact size="landing" className="shrink-0" />
+              <span className="landing-home-brand-copy">
+                <span className="landing-home-wordmark">Sentryn</span>
+                <span className="landing-home-brand-tag">AI governance workspace</span>
+              </span>
             </Link>
-            <Link href="/demo" className="landing-home-cta landing-home-header-cta">
-              Start demo
-            </Link>
+
+            <nav className="landing-home-nav hidden items-center gap-1 lg:flex">
+              {navLinks.map((item) =>
+                item.href.startsWith("/") ? (
+                  <Link key={item.label} href={item.href} className="landing-home-navlink">
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a key={item.label} href={item.href} className="landing-home-navlink">
+                    {item.label}
+                  </a>
+                )
+              )}
+            </nav>
+
+            <div className="landing-home-header-actions flex items-center gap-3">
+              <Link href="/demo" className="landing-home-link landing-home-link-pill hidden sm:inline-flex">
+                Login
+              </Link>
+              <Link href="/demo" className="landing-home-cta landing-home-header-cta">
+                Start demo
+              </Link>
+            </div>
           </div>
         </div>
       </header>
 
       <main className="pb-24">
-        <section className="px-4 pt-8 sm:px-6 lg:px-8 lg:pt-12">
-          <div className="mx-auto max-w-[1240px]">
-            <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.44fr)_minmax(0,0.56fr)] lg:gap-10">
-              <div className="animate-rise-in max-w-[510px] space-y-9 lg:pt-6">
-                <div className="space-y-5">
-                  <div className="landing-home-kicker">AI governance for SMEs</div>
-                  <h1 className="max-w-[8.8ch] text-balance text-[3rem] font-semibold leading-[0.98] tracking-[-0.045em] text-white sm:text-[4.2rem] xl:text-[4.7rem]">
+        <section className="landing-home-hero px-4 pt-4 sm:px-6 lg:px-8 lg:pt-6">
+          <div className="mx-auto max-w-[1280px]">
+            <div className="landing-home-hero-grid">
+              <div className="landing-home-hero-copy animate-rise-in">
+                <div className="landing-home-hero-copy-shell">
+                  <div className="landing-home-hero-intro">
+                    <div className="landing-home-kicker-pill">AI governance for SMEs</div>
+                    <div className="landing-home-hero-signal">Operational control layer</div>
+                  </div>
+
+                  <h1 className="landing-home-hero-title">
                     Govern AI use with less sprawl.
                   </h1>
-                  <p className="max-w-[28rem] text-[1rem] leading-7 text-white/78 sm:text-[1.04rem]">
-                    Inventory, review, policy, monitoring, and evidence in one
-                    operating layer.
+                  <p className="landing-home-hero-body">
+                    Inventory, review, policy, monitoring, and evidence in one operating layer.
                   </p>
-                </div>
 
-                <div className="flex flex-wrap items-center gap-3">
-                  <Link href="/demo" className="landing-home-hero-cta">
-                    Start demo
-                  </Link>
-                  <a href="#workflow" className="landing-home-hero-secondary">
-                    Explore workflow
-                  </a>
-                </div>
+                  <div className="landing-home-hero-actions">
+                    <Link href="/demo" className="landing-home-hero-cta">
+                      Start demo
+                    </Link>
+                    <a href="#workflow" className="landing-home-hero-secondary">
+                      Explore workflow
+                    </a>
+                  </div>
 
-                <div className="landing-home-inline-strip" aria-label="Platform scope">
-                  {inlineFeatures.map((item, index) => (
-                    <span key={item} className="landing-home-inline-item">
-                      {item}
-                      {index < inlineFeatures.length - 1 ? (
-                        <span aria-hidden="true" className="landing-home-inline-divider">
-                          ·
+                  <div className="landing-home-inline-strip" aria-label="Platform scope">
+                    <span className="landing-home-inline-label">Operational coverage</span>
+                    <div className="landing-home-inline-track">
+                      {inlineFeatures.map((item) => (
+                        <span key={item} className="landing-home-inline-chip">
+                          {item}
                         </span>
-                      ) : null}
-                    </span>
-                  ))}
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -151,7 +157,7 @@ export default function LandingPage() {
         </section>
 
         <section id="platform" className="landing-home-anchor px-4 pt-20 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-[1240px]">
+          <div className="mx-auto max-w-[1280px]">
             <div className="max-w-[560px] space-y-3">
               <div className="landing-home-kicker">Platform</div>
               <h2 className="text-balance text-[1.95rem] font-semibold tracking-[-0.045em] text-white sm:text-[2.3rem]">
@@ -179,7 +185,7 @@ export default function LandingPage() {
         </section>
 
         <section id="workflow" className="landing-home-anchor px-4 pt-16 sm:px-6 lg:px-8 lg:pt-20">
-          <div className="mx-auto max-w-[1240px]">
+          <div className="mx-auto max-w-[1280px]">
             <div className="max-w-[500px] space-y-3">
               <div className="landing-home-kicker">Workflow</div>
               <h2 className="text-balance text-[2rem] font-semibold tracking-[-0.05em] text-white sm:text-[2.4rem]">
@@ -205,7 +211,7 @@ export default function LandingPage() {
         </section>
 
         <section id="roles" className="landing-home-anchor px-4 pt-16 sm:px-6 lg:px-8 lg:pt-20">
-          <div className="mx-auto max-w-[1240px]">
+          <div className="mx-auto max-w-[1280px]">
             <div className="landing-home-roles-band grid gap-8 lg:grid-cols-[minmax(280px,0.42fr)_minmax(0,0.58fr)] lg:items-start">
               <div className="max-w-[430px] space-y-3">
                 <div className="landing-home-kicker">Roles</div>
@@ -234,7 +240,7 @@ export default function LandingPage() {
         </section>
 
         <section className="px-4 pt-16 sm:px-6 lg:px-8 lg:pt-20">
-          <div className="mx-auto max-w-[1240px]">
+          <div className="mx-auto max-w-[1280px]">
             <div className="landing-home-footer-band">
               <div className="space-y-2">
                 <div className="landing-home-kicker">Guided preview</div>
