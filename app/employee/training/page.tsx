@@ -1,80 +1,114 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import { EmployeeShell } from "@/components/layout/employee-shell";
 import { PageContainer, PageHeader } from "@/components/layout/page-container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { DetailPanel } from "@/components/ui/detail-panel";
+import { DisclosureCard } from "@/components/ui/disclosure-card";
 import { ProgressBar } from "@/components/ui/progress-bar";
+import { cn } from "@/lib/utils";
 
 const modules = [
-  ["Introduction to company AI rules", "Complete", 100],
-  ["Safe AI usage basics", "In progress", 72],
-  ["Approved tools and use cases", "Assigned", 0],
-  ["Data handling with AI", "Assigned", 0],
+  { id: "rules", title: "Introduction to company AI rules", status: "Complete", progress: 100 },
+  { id: "safe", title: "Safe AI usage basics", status: "In progress", progress: 72 },
+  { id: "tools", title: "Approved tools and use cases", status: "Assigned", progress: 0 },
+  { id: "data", title: "Data handling with AI", status: "Assigned", progress: 0 },
 ];
 
 export default function EmployeeTrainingPage() {
+  const [selectedId, setSelectedId] = useState("safe");
+  const selected = useMemo(
+    () => modules.find((module) => module.id === selectedId) ?? modules[0],
+    [selectedId]
+  );
+
   return (
     <EmployeeShell>
       <PageContainer>
         <PageHeader
           eyebrow="My training"
-          title="Finish only the governance training that matters for your role."
-          description="This is not a learning portal. It is a short list of modules tied to approved AI use and the workflows you actually touch."
-          actions={
-            <>
-              <Button variant="secondary">View progress</Button>
-              <Button>Start training</Button>
-            </>
-          }
+          title="Finish one short module next."
+          description=""
+          actions={<Button>Start training</Button>}
           meta={
             <>
-              <Badge>4 assigned</Badge>
               <Badge tone="warning">2 overdue</Badge>
+              <Badge tone="info">4 assigned</Badge>
             </>
           }
         />
 
-        <section className="grid gap-5 xl:grid-cols-[minmax(0,1.15fr)_360px]">
-          <Card>
-            <CardHeader className="space-y-2">
+        <section className="grid gap-6 xl:grid-cols-[minmax(0,1.08fr)_380px]">
+          <div className="space-y-4 border-t border-white/6 pt-4">
+            <div className="space-y-2">
               <Badge className="w-fit">Assigned modules</Badge>
-              <CardTitle className="text-[1.35rem]">Your current learning list</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {modules.map(([title, status, progress]) => (
-                <div key={title} className="surface-card-soft rounded-[20px] px-4 py-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <div className="text-sm font-semibold text-slate-950">{title}</div>
-                      <div className="mt-1 text-sm text-slate-500">{status}</div>
-                    </div>
-                    <div className="text-sm font-medium text-slate-700">{progress}%</div>
-                  </div>
-                  <ProgressBar value={Number(progress)} className="mt-3" tone={Number(progress) < 50 ? "warning" : "success"} />
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+              <h2 className="text-[1.02rem] font-semibold tracking-[-0.03em] text-slate-50">
+                Select one module to continue.
+              </h2>
+            </div>
 
-          <Card>
-            <CardHeader className="space-y-2">
-              <Badge tone="info" className="w-fit">
-                Why it matters
-              </Badge>
-              <CardTitle>Training unlocks safer everyday use.</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {[
-                "Complete Safe AI Usage Basics before using customer-reply workflows.",
-                "Review Approved Tools and Use Cases to know when a new request is not needed.",
-                "Data Handling with AI is required for finance, support, and legal teams.",
-              ].map((item) => (
-                <div key={item} className="rounded-[18px] border border-slate-200/70 px-4 py-3 text-sm leading-6 text-slate-700">
-                  {item}
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+            <div className="space-y-3">
+              {modules.map((module) => {
+                const active = module.id === selectedId;
+
+                return (
+                  <button
+                    key={module.id}
+                    type="button"
+                    onClick={() => setSelectedId(module.id)}
+                    className={cn(
+                      "w-full rounded-[24px] border px-5 py-5 text-left transition",
+                      active
+                        ? "surface-focus-employee border-cyan-300/16"
+                        : "surface-card-soft interactive-card"
+                    )}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <div className="text-sm font-semibold text-slate-100">{module.title}</div>
+                        <div className="mt-1 text-sm text-slate-400">{module.status}</div>
+                      </div>
+                      <div className="text-sm font-semibold text-slate-100">{module.progress}%</div>
+                    </div>
+                    <ProgressBar
+                      value={module.progress}
+                      className="mt-3"
+                      tone={module.progress < 50 ? "warning" : "success"}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <DetailPanel
+            eyebrow="Selected module"
+            title={selected.title}
+            description=""
+            actions={<Badge tone={selected.progress === 100 ? "success" : selected.progress > 0 ? "warning" : "info"}>{selected.status}</Badge>}
+          >
+            <div className="rounded-[20px] border border-white/8 bg-white/[0.03] px-4 py-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="text-sm text-slate-300">Progress</div>
+                <div className="text-sm font-semibold text-slate-100">{selected.progress}%</div>
+              </div>
+              <ProgressBar
+                value={selected.progress}
+                className="mt-3"
+                tone={selected.progress < 50 ? "warning" : "success"}
+              />
+            </div>
+
+            <Button size="sm">Continue</Button>
+
+            <DisclosureCard title="Why this module">
+              <div className="rounded-[16px] border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-slate-300">
+                Finish this before using the matching workflow category.
+              </div>
+            </DisclosureCard>
+          </DetailPanel>
         </section>
       </PageContainer>
     </EmployeeShell>

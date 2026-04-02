@@ -12,14 +12,14 @@ export function ProgressBar({
   tone = "default",
 }: ProgressBarProps) {
   const toneClass = {
-    default: "bg-[linear-gradient(90deg,#1d4ed8,#0891b2)]",
+    default: "bg-[linear-gradient(90deg,#2563eb,#22d3ee)]",
     success: "bg-[linear-gradient(90deg,#059669,#34d399)]",
-    warning: "bg-[linear-gradient(90deg,#d97706,#f59e0b)]",
+    warning: "bg-[linear-gradient(90deg,#d97706,#fbbf24)]",
     danger: "bg-[linear-gradient(90deg,#dc2626,#fb7185)]",
   }[tone];
 
   return (
-    <div className={cn("h-2 overflow-hidden rounded-full bg-slate-200/80", className)}>
+    <div className={cn("h-2 overflow-hidden rounded-full bg-white/[0.08]", className)}>
       <div className={cn("h-full rounded-full", toneClass)} style={{ width: `${value}%` }} />
     </div>
   );

@@ -38,16 +38,16 @@ function NavLink({
       onClick={onSelect}
       title={collapsed ? item.name : undefined}
       className={cn(
-        "group relative flex items-center overflow-hidden rounded-[18px] border px-3 py-3 text-sm transition-all duration-200 ease-out",
+        "group relative flex items-center overflow-hidden rounded-[20px] border px-3 py-3 text-sm transition-all duration-200 ease-out",
         collapsed ? "justify-center" : "gap-3",
         active
-          ? "translate-x-[2px] border-cyan-200/18 bg-[linear-gradient(90deg,rgba(59,130,246,0.18),rgba(255,255,255,0.12))] text-white shadow-[0_16px_34px_rgba(10,33,41,0.2)]"
-          : "border-transparent text-slate-100/84 hover:translate-x-[2px] hover:border-cyan-200/12 hover:bg-[linear-gradient(90deg,rgba(59,130,246,0.12),rgba(255,255,255,0.08))] hover:text-white hover:shadow-[0_14px_30px_rgba(10,33,41,0.18)]"
+          ? "border-cyan-300/20 bg-[linear-gradient(135deg,rgba(34,211,238,0.12),rgba(37,99,235,0.18)_56%,rgba(255,255,255,0.06))] text-white shadow-[0_18px_36px_rgba(2,8,20,0.26),inset_0_1px_0_rgba(255,255,255,0.08)]"
+          : "border-transparent text-slate-400 hover:-translate-y-[1px] hover:border-white/10 hover:bg-white/[0.06] hover:text-slate-100"
       )}
     >
       <span
         className={cn(
-          "absolute bottom-3 left-1.5 top-3 w-[3px] rounded-full bg-cyan-300 transition-opacity duration-200",
+          "absolute bottom-3 left-1.5 top-3 w-[3px] rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.9)] transition-opacity duration-200",
           active ? "opacity-100" : "opacity-0 group-hover:opacity-70"
         )}
       />
@@ -55,8 +55,8 @@ function NavLink({
         className={cn(
           "relative flex h-9 w-9 items-center justify-center rounded-[14px] border transition-all duration-200",
           active
-            ? "border-white/10 bg-white/10 text-white"
-            : "border-white/8 bg-white/5 text-slate-100/82 group-hover:border-cyan-200/16 group-hover:bg-white/12 group-hover:text-white"
+            ? "border-white/12 bg-white/12 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+            : "border-white/8 bg-white/[0.04] text-slate-300 group-hover:border-cyan-200/16 group-hover:bg-white/[0.08] group-hover:text-white"
         )}
       >
         <AppIcon name={item.icon} className="h-[17px] w-[17px]" />
@@ -65,13 +65,17 @@ function NavLink({
         <>
           <div className="min-w-0 flex-1">
             <div className="font-medium tracking-[-0.01em]">{item.name}</div>
-            {active && item.hint ? <div className="mt-0.5 text-[11px] opacity-60">{item.hint}</div> : null}
+            {item.hint ? (
+              <div className={cn("mt-0.5 text-[11px]", active ? "text-cyan-100/64" : "text-slate-500")}>
+                {item.hint}
+              </div>
+            ) : null}
           </div>
           {item.badge ? (
             <span
               className={cn(
                 "rounded-full px-2 py-0.5 text-[11px] font-semibold",
-                active ? "bg-white/16 text-white" : "bg-white/10 text-slate-100/88"
+                active ? "bg-white/16 text-white" : "bg-white/10 text-slate-300"
               )}
             >
               {item.badge}
@@ -142,14 +146,14 @@ export function Sidebar({ variant = "admin" }: SidebarProps) {
           collapsed ? "lg:w-[112px]" : "lg:w-[304px]"
         )}
       >
-        <div className={cn(sidebarSurfaceClass, "relative flex h-full flex-col overflow-hidden rounded-[32px] border border-white/8 px-3 pb-4 pt-4 text-slate-200")}>
+        <div className={cn(sidebarSurfaceClass, "relative flex h-full flex-col overflow-hidden rounded-[34px] border border-white/10 px-3 pb-4 pt-4 text-slate-200")}>
           <div className={cn("mb-4 flex items-center", collapsed ? "justify-center" : "px-2")}>
-            <ProductBrand compact={collapsed} context="sidebar" />
+            <ProductBrand compact={collapsed} context="sidebar" size="shell" />
           </div>
 
           {!collapsed ? (
-            <div className="mb-4 rounded-[22px] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.04))] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-100/50">
+            <div className="mb-4 rounded-[24px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] px-4 py-3.5 shadow-[0_16px_36px_rgba(2,8,20,0.18),inset_0_1px_0_rgba(255,255,255,0.06)]">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-100/46">
                 {variant === "admin" ? "Governance workspace" : "Employee access"}
               </div>
               <div className="mt-2 text-sm font-medium text-white/94">{workspaceLabel}</div>
@@ -167,7 +171,7 @@ export function Sidebar({ variant = "admin" }: SidebarProps) {
             {sections.map((section) => (
               <section key={section.label} className="mb-5">
                 {!collapsed ? (
-                  <div className="px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-100/46">
+                  <div className="px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-100/38">
                     {section.label}
                   </div>
                 ) : null}
@@ -188,7 +192,7 @@ export function Sidebar({ variant = "admin" }: SidebarProps) {
 
           <div className="mt-2 border-t border-white/8 pt-4">
             {!collapsed ? (
-              <div className="px-2 pb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-100/46">
+              <div className="px-2 pb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-100/38">
                 Switch role
               </div>
             ) : null}
@@ -206,22 +210,54 @@ export function Sidebar({ variant = "admin" }: SidebarProps) {
                       "group flex items-center rounded-[18px] border transition-all duration-200 ease-out",
                       collapsed ? "justify-center px-3 py-3" : "gap-3 px-3 py-3",
                       active
-                        ? "border-cyan-200/14 bg-[linear-gradient(90deg,rgba(59,130,246,0.16),rgba(255,255,255,0.08))] text-white shadow-[0_12px_28px_rgba(10,33,41,0.16)]"
-                        : "border-transparent text-slate-100/82 hover:-translate-y-[1px] hover:bg-[linear-gradient(90deg,rgba(59,130,246,0.1),rgba(255,255,255,0.05))] hover:text-white"
+                        ? "border-cyan-300/16 bg-[linear-gradient(135deg,rgba(34,211,238,0.1),rgba(37,99,235,0.14),rgba(255,255,255,0.04))] text-white shadow-[0_14px_28px_rgba(2,8,20,0.16)]"
+                        : "border-transparent text-slate-400 hover:-translate-y-[1px] hover:border-white/8 hover:bg-white/[0.05] hover:text-white"
                     )}
                   >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-[14px] border border-white/8 bg-white/6 transition-all duration-200 group-hover:border-cyan-200/16 group-hover:bg-white/10">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-[14px] border border-white/8 bg-white/[0.05] transition-all duration-200 group-hover:border-cyan-200/16 group-hover:bg-white/[0.08]">
                       <AppIcon name={item.icon} className="h-[17px] w-[17px]" />
                     </span>
                     {!collapsed ? (
                       <div className="min-w-0">
                         <div className="text-sm font-medium tracking-[-0.01em]">{item.label}</div>
-                        {active ? <div className="mt-0.5 text-[11px] opacity-60">{item.description}</div> : null}
+                        <div className={cn("mt-0.5 text-[11px]", active ? "text-cyan-100/60" : "text-slate-500")}>
+                          {item.description}
+                        </div>
                       </div>
                     ) : null}
                   </Link>
                 );
               })}
+            </div>
+
+            <div className="mt-3 border-t border-white/8 pt-3">
+              {!collapsed ? (
+                <div className="px-2 pb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-100/38">
+                  Session
+                </div>
+              ) : null}
+              <Link
+                href="/"
+                onClick={handleSelect}
+                title={collapsed ? "Logout" : undefined}
+                className={cn(
+                  "group flex items-center rounded-[18px] border transition-all duration-200 ease-out",
+                  collapsed ? "justify-center px-3 py-3" : "gap-3 px-3 py-3",
+                  "border-transparent text-slate-400 hover:-translate-y-[1px] hover:border-white/8 hover:bg-white/[0.05] hover:text-white"
+                )}
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-[14px] border border-white/8 bg-white/[0.05] transition-all duration-200 group-hover:border-cyan-200/16 group-hover:bg-white/[0.08]">
+                  <AppIcon name="chevron-left" className="h-[17px] w-[17px]" />
+                </span>
+                {!collapsed ? (
+                  <div className="min-w-0">
+                    <div className="text-sm font-medium tracking-[-0.01em]">Logout</div>
+                    <div className="mt-0.5 text-[11px] text-slate-500">
+                      Back to landing
+                    </div>
+                  </div>
+                ) : null}
+              </Link>
             </div>
           </div>
         </div>

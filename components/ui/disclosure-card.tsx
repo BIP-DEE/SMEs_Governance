@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 type DisclosureCardProps = {
@@ -15,7 +14,7 @@ type DisclosureCardProps = {
 
 export function DisclosureCard({
   title,
-  summary,
+  summary: _summary,
   badgeLabel,
   badgeTone = "neutral",
   children,
@@ -23,25 +22,22 @@ export function DisclosureCard({
   className,
 }: DisclosureCardProps) {
   return (
-    <Card className={cn("overflow-hidden", className)}>
+    <div className={cn("border-t border-white/6 pt-3", className)}>
       <details className="group" open={defaultOpen}>
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 marker:content-none [&::-webkit-details-marker]:hidden">
-          <div className="space-y-1">
-            <p className="text-sm font-semibold tracking-[-0.01em] text-slate-900">{title}</p>
-            {summary ? <p className="text-sm leading-6 text-slate-500">{summary}</p> : null}
-          </div>
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-2 marker:content-none [&::-webkit-details-marker]:hidden">
+          <p className="text-sm font-semibold tracking-[-0.01em] text-slate-100">{title}</p>
           <div className="flex items-center gap-3">
             {badgeLabel ? <Badge tone={badgeTone}>{badgeLabel}</Badge> : null}
-            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 group-open:hidden">
-              Expand
+            <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400 group-open:hidden">
+              View
             </span>
-            <span className="hidden text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 group-open:inline">
-              Collapse
+            <span className="hidden text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400 group-open:inline">
+              Hide
             </span>
           </div>
         </summary>
-        <div className="border-t border-slate-200/70 px-6 pb-6 pt-2">{children}</div>
+        <div className="pb-1 pt-3">{children}</div>
       </details>
-    </Card>
+    </div>
   );
 }

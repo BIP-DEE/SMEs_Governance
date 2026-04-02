@@ -2,33 +2,20 @@ import Link from "next/link";
 import { AppShell } from "@/components/layout/app-shell";
 import { PageContainer, PageHeader } from "@/components/layout/page-container";
 import { DashboardSecondaryPanel } from "@/components/dashboard/dashboard-secondary-panel";
-import { AppIcon } from "@/components/ui/app-icon";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ProgressBar } from "@/components/ui/progress-bar";
 
-const workflow = [
-  { stage: "Register", detail: "6 new records", href: "/inventory" },
-  { stage: "Review", detail: "8 active requests", href: "/requests" },
-  { stage: "Enable", detail: "2 rollouts ready", href: "/policies" },
-  { stage: "Monitor", detail: "1 flagged signal", href: "/monitoring" },
-  { stage: "Report", detail: "Export ready", href: "/reports" },
+const summaryStrip = [
+  { label: "Register", value: "6 need owners", href: "/inventory" },
+  { label: "Review", value: "3 blocked", href: "/requests" },
+  { label: "Monitor", value: "1 flagged", href: "/monitoring" },
 ];
 
-const supportLane = [
-  {
-    stage: "Enable",
-    title: "Sensitive data guidance is ready to publish",
-    detail: "Finance and support can move into acknowledgement this week.",
-    href: "/policies",
-  },
-  {
-    stage: "Monitor",
-    title: "One workspace signal still needs a quick review",
-    detail: "Context is already logged inside monitoring.",
-    href: "/monitoring",
-  },
+const posture = [
+  ["Owner coverage", 100],
+  ["Logged workspaces", 91],
+  ["Training completion", 67],
 ];
 
 export default function DashboardPage() {
@@ -37,8 +24,8 @@ export default function DashboardPage() {
       <PageContainer>
         <PageHeader
           eyebrow="Admin workspace"
-          title="Move the program through the few decisions that matter today."
-          description="Keep the workflow visible, clear what is blocked, and leave the rest behind one more click."
+          title="Move only the next decision."
+          description=""
           actions={
             <>
               <Button variant="secondary" href="/inventory">
@@ -47,149 +34,97 @@ export default function DashboardPage() {
               <Button href="/requests">Open review queue</Button>
             </>
           }
-          meta={<Badge tone="success">94% evidence coverage</Badge>}
+          meta={
+            <>
+              <Badge tone="warning">3 blocked</Badge>
+              <Badge tone="success">94% evidence coverage</Badge>
+            </>
+          }
         />
 
-        <section className="grid gap-5 xl:grid-cols-[minmax(0,1.45fr)_340px]">
-          <Card className="surface-focus-admin overflow-hidden">
-            <CardHeader className="border-b border-[#bfdedf]/75">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                <div className="space-y-2">
-                  <Badge tone="info" className="w-fit">
-                    Action lane
-                  </Badge>
-                  <CardTitle className="text-[1.58rem]">Clear the blocked review, then move rollout forward.</CardTitle>
-                </div>
+        <section className="grid gap-6 xl:grid-cols-[minmax(0,1.34fr)_320px]">
+          <div className="space-y-6">
+            <div className="surface-dark rounded-[32px] px-6 py-6 sm:px-7">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <Badge tone="warning">Primary lane</Badge>
                 <Button size="sm" variant="secondary" href="/reports">
-                  View evidence
+                  Evidence
                 </Button>
               </div>
-            </CardHeader>
 
-            <CardContent className="space-y-5 pt-5">
-              <div className="grid gap-4 xl:grid-cols-[minmax(0,1.15fr)_300px]">
+              <h2 className="mt-5 max-w-2xl text-balance text-[1.9rem] font-semibold tracking-[-0.05em] text-white">
+                Clear the procurement review.
+              </h2>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                {[
+                  ["Owner", "Nina Patel"],
+                  ["Reviewer", "Sophie Turner"],
+                  ["Needs now", "Retention evidence"],
+                ].map(([label, value]) => (
+                  <div key={label} className="rounded-[20px] border border-white/8 bg-white/[0.05] px-4 py-4">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/52">
+                      {label}
+                    </div>
+                    <div className="mt-2 text-sm font-semibold text-white">{value}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Button href="/requests">Open request</Button>
+                <Button variant="secondary" href="/inventory">
+                  Open register
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid gap-3 md:grid-cols-3">
+              {summaryStrip.map((item) => (
                 <Link
-                  href="/requests"
-                  className="surface-card-strong interactive-card flex min-h-[276px] flex-col rounded-[28px] px-6 py-6"
+                  key={item.label}
+                  href={item.href}
+                  className="surface-card-soft interactive-card rounded-[22px] px-4 py-4"
                 >
-                  <div className="flex items-center justify-between gap-3">
-                    <Badge tone="warning">Review first</Badge>
-                    <span className="flex items-center gap-2 text-sm font-medium text-slate-700">
-                      Open request
-                      <AppIcon name="arrow-right" className="h-4 w-4" />
-                    </span>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+                    {item.label}
                   </div>
-
-                  <div className="mt-5 max-w-xl space-y-3">
-                    <div className="text-[1.52rem] font-semibold tracking-[-0.045em] text-slate-950">
-                      Procurement assistant still needs retention evidence.
-                    </div>
-                    <p className="text-sm leading-6 text-slate-600">
-                      Once evidence is attached, this request can move straight into sign-off.
-                    </p>
-                  </div>
-
-                  <div className="mt-auto grid gap-3 pt-6 sm:grid-cols-3">
-                    {[
-                      ["Owner", "Nina Patel"],
-                      ["Status", "Blocked"],
-                      ["Reviewer", "Sophie Turner"],
-                    ].map(([label, value]) => (
-                      <div key={label} className="rounded-[18px] border border-[#bad8e7]/80 bg-white/58 px-4 py-3">
-                        <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</div>
-                        <div className="mt-2 text-sm font-semibold text-slate-900">{value}</div>
-                      </div>
-                    ))}
-                  </div>
+                  <div className="mt-2 text-sm font-semibold text-slate-100">{item.value}</div>
                 </Link>
+              ))}
+            </div>
 
-                <div className="space-y-3">
-                  {supportLane.map((item) => (
-                    <Link
-                      key={item.title}
-                      href={item.href}
-                      className="surface-card-soft interactive-card flex min-h-[132px] flex-col rounded-[24px] px-5 py-5"
-                    >
-                      <div className="flex items-center justify-between gap-3">
-                        <Badge tone={item.stage === "Enable" ? "info" : "warning"}>{item.stage}</Badge>
-                        <AppIcon name="arrow-right" className="h-4 w-4 text-slate-500" />
-                      </div>
-                      <div className="mt-4 text-base font-semibold tracking-[-0.02em] text-slate-950">{item.title}</div>
-                      <div className="mt-2 text-sm leading-6 text-slate-600">{item.detail}</div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+            <DashboardSecondaryPanel />
+          </div>
 
-              <div className="surface-rail-admin rounded-[26px] px-5 py-4">
-                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                      Workflow spine
-                    </div>
-                    <div className="mt-1 text-sm text-slate-700">Move through the program without leaving the main lane.</div>
-                  </div>
-                  <Button size="sm" variant="ghost" href="/inventory">
-                    Open full workflow
-                  </Button>
-                </div>
+          <aside className="space-y-4 border-t border-white/6 pt-4">
+            <div className="space-y-2">
+              <Badge className="w-fit">Program posture</Badge>
+              <h2 className="text-[1.08rem] font-semibold tracking-[-0.03em] text-slate-50">
+                Training is the only watch area.
+              </h2>
+            </div>
 
-                <div className="mt-4 grid gap-2 md:grid-cols-5">
-                  {workflow.map((item) => (
-                    <Link
-                      key={item.stage}
-                      href={item.href}
-                      className="interactive-card rounded-[18px] border border-[#b9d9e4]/90 bg-white/58 px-4 py-3"
-                    >
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                        {item.stage}
-                      </div>
-                      <div className="mt-1 text-sm font-semibold text-slate-950">{item.detail}</div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="surface-dark text-white">
-            <CardHeader className="space-y-2">
-              <Badge className="w-fit border-white/12 bg-white/10 text-white">Program posture</Badge>
-              <CardTitle className="text-white">Coverage is steady. Owner training is the one lagging area.</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {[
-                ["Inventory with named owner", 100],
-                ["Approved workspaces with logging", 91],
-                ["Owner training completion", 67],
-              ].map(([label, value]) => (
-                <div key={label} className="interactive-card-dark rounded-[20px] border border-white/12 bg-white/8 p-4">
+            <div className="space-y-3">
+              {posture.map(([label, value]) => (
+                <div key={label} className="rounded-[22px] border border-white/8 bg-white/[0.03] px-4 py-4">
                   <div className="flex items-center justify-between gap-3">
-                    <div className="text-sm text-white/88">{label}</div>
+                    <div className="text-sm text-slate-200">{label}</div>
                     <div className="text-sm font-semibold text-white">{value}%</div>
                   </div>
                   <ProgressBar
                     value={Number(value)}
-                    className="mt-3 bg-white/12"
+                    className="mt-3"
                     tone={Number(value) < 75 ? "warning" : "success"}
                   />
                 </div>
               ))}
+            </div>
 
-              <div className="interactive-card-dark rounded-[20px] border border-white/12 bg-white/8 px-4 py-4">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-100/84">
-                  Watch item
-                </div>
-                <div className="mt-2 text-sm leading-6 text-white/88">
-                  Procurement managers are still the lowest completion segment ahead of next Friday’s export.
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        <section className="mt-5">
-          <DashboardSecondaryPanel />
+            <Button variant="secondary" href="/training">
+              Review training
+            </Button>
+          </aside>
         </section>
       </PageContainer>
     </AppShell>

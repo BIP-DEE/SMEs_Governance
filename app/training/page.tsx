@@ -1,165 +1,160 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import { AppShell } from "@/components/layout/app-shell";
 import { PageContainer, PageHeader } from "@/components/layout/page-container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { DetailPanel } from "@/components/ui/detail-panel";
+import { DisclosureCard } from "@/components/ui/disclosure-card";
 import { ProgressBar } from "@/components/ui/progress-bar";
+import { cn } from "@/lib/utils";
 
 const modules = [
   {
-    title: "Introduction to Company AI Rules",
-    summary: "Sets the baseline for approved AI behavior across the company.",
+    id: "rules",
+    title: "Introduction to company AI rules",
     assigned: "184 employees",
     progress: 100,
     status: "Live",
+    detail: "Baseline governance module.",
   },
   {
-    title: "Safe AI Usage Basics",
-    summary: "Covers prompting boundaries, output review, and escalation rules.",
+    id: "safe",
+    title: "Safe AI usage basics",
     assigned: "168 employees",
     progress: 82,
     status: "Live",
+    detail: "Prompt boundaries and review.",
   },
   {
-    title: "Approved Tools and Use Cases",
-    summary: "Explains when approved workspaces can be used without a new request.",
+    id: "tools",
+    title: "Approved tools and use cases",
     assigned: "142 employees",
     progress: 68,
     status: "Live",
+    detail: "When a new request is not needed.",
   },
   {
-    title: "Human Review Expectations",
-    summary: "Clarifies when human review is mandatory before action or sharing.",
-    assigned: "56 managers",
-    progress: 61,
-    status: "Updated",
-  },
-  {
-    title: "Data Handling with AI",
-    summary: "Shows which data types can enter approved workflows and which cannot.",
+    id: "data",
+    title: "Data handling with AI",
     assigned: "74 employees",
     progress: 44,
     status: "Needs push",
+    detail: "Role-specific data controls.",
   },
-];
-
-const overdue = [
-  "Finance onboarding cohort still has 7 overdue completions.",
-  "Support team needs a reminder on Sensitive Data Guidance alignment.",
-  "Manager review module adoption is behind target in procurement.",
-];
+] as const;
 
 export default function TrainingPage() {
+  const [selectedId, setSelectedId] = useState<(typeof modules)[number]["id"]>("data");
+  const selected = useMemo(
+    () => modules.find((module) => module.id === selectedId) ?? modules[0],
+    [selectedId]
+  );
+
   return (
     <AppShell>
       <PageContainer>
         <PageHeader
           eyebrow="Training"
-          title="Keep AI governance training short, useful, and visible."
-          description="Employees should see only the learning that matters for approved AI behavior, while admins keep completion and overdue coverage in view."
-          actions={
-            <>
-              <Button variant="secondary">Assign training</Button>
-              <Button>Create module</Button>
-            </>
-          }
+          title="Push only the module that needs help."
+          description=""
+          actions={<Button>Create module</Button>}
           meta={
             <>
-              <Badge>5 modules</Badge>
-              <Badge tone="info">184 assigned</Badge>
               <Badge tone="success">84% complete</Badge>
               <Badge tone="warning">13 overdue</Badge>
             </>
           }
         />
 
-        <section className="grid gap-5 xl:grid-cols-[minmax(0,1.15fr)_380px]">
-          <Card>
-            <CardHeader className="space-y-2">
-              <Badge className="w-fit">Module library</Badge>
-              <CardTitle className="text-[1.35rem]">Lightweight governance training</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {modules.map((module) => (
-                <div key={module.title} className="surface-card-soft interactive-card rounded-[22px] px-5 py-5">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div className="space-y-1">
-                      <div className="text-base font-semibold tracking-[-0.02em] text-slate-950">{module.title}</div>
-                      <div className="max-w-2xl text-sm leading-6 text-slate-500">{module.summary}</div>
-                    </div>
-                    <Badge
-                      tone={
-                        module.status === "Live"
-                          ? "success"
-                          : module.status === "Updated"
-                            ? "info"
-                            : "warning"
-                      }
-                    >
-                      {module.status}
-                    </Badge>
-                  </div>
-                  <div className="mt-4 flex items-center justify-between gap-3 text-sm">
-                    <span className="text-slate-500">{module.assigned}</span>
-                    <span className="font-medium text-slate-700">{module.progress}%</span>
-                  </div>
-                  <ProgressBar
-                    value={module.progress}
-                    className="mt-3"
-                    tone={module.progress < 50 ? "warning" : module.progress < 75 ? "default" : "success"}
-                  />
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    <Button size="sm" variant="secondary">
-                      View progress
-                    </Button>
-                    <Button size="sm" variant="ghost">
-                      Mark complete
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+        <section className="grid gap-6 xl:grid-cols-[minmax(0,1.08fr)_390px]">
+          <div className="space-y-4 border-t border-white/6 pt-4">
+            <div className="space-y-2">
+              <Badge className="w-fit">Module list</Badge>
+              <h2 className="text-[1.02rem] font-semibold tracking-[-0.03em] text-slate-50">
+                Select one module to review.
+              </h2>
+            </div>
 
-          <div className="space-y-5">
-            <Card className="surface-dark text-white">
-              <CardHeader className="space-y-2">
-                <Badge className="w-fit border-white/10 bg-white/10 text-white">Coverage</Badge>
-                <CardTitle className="text-white">Training is mostly healthy, but role-specific modules need help.</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
+            <div className="space-y-3">
+              {modules.map((module) => {
+                const active = module.id === selectedId;
+
+                return (
+                  <button
+                    key={module.id}
+                    type="button"
+                    onClick={() => setSelectedId(module.id)}
+                    className={cn(
+                      "w-full rounded-[24px] border px-5 py-5 text-left transition",
+                      active
+                        ? "surface-focus-admin border-cyan-300/16"
+                        : "surface-card-soft interactive-card"
+                    )}
+                  >
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <div>
+                        <div className="text-sm font-semibold text-slate-100">{module.title}</div>
+                        <div className="mt-1 text-sm text-slate-400">{module.assigned}</div>
+                      </div>
+                      <Badge tone={module.status === "Needs push" ? "warning" : "success"}>
+                        {module.status}
+                      </Badge>
+                    </div>
+                    <div className="mt-4 flex items-center justify-between gap-3 text-sm">
+                      <span className="text-slate-400">{module.detail}</span>
+                      <span className="font-semibold text-slate-100">{module.progress}%</span>
+                    </div>
+                    <ProgressBar
+                      value={module.progress}
+                      className="mt-3"
+                      tone={module.progress < 50 ? "warning" : module.progress < 75 ? "default" : "success"}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <DetailPanel
+            eyebrow="Selected module"
+            title={selected.title}
+            description=""
+            actions={<Badge tone={selected.status === "Needs push" ? "warning" : "success"}>{selected.status}</Badge>}
+          >
+            <div className="rounded-[20px] border border-white/8 bg-white/[0.03] px-4 py-4 text-sm text-slate-200">
+              {selected.detail}
+            </div>
+
+            <div className="rounded-[18px] border border-white/8 bg-white/[0.03] px-4 py-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="text-sm text-slate-300">Completion</div>
+                <div className="text-sm font-semibold text-slate-100">{selected.progress}%</div>
+              </div>
+              <ProgressBar
+                value={selected.progress}
+                className="mt-3"
+                tone={selected.progress < 50 ? "warning" : "success"}
+              />
+            </div>
+
+            <Button size="sm">Message cohort</Button>
+
+            <DisclosureCard title="More coverage">
+              <div className="space-y-2">
                 {[
-                  ["Core AI rules", 100],
-                  ["Safe usage basics", 82],
-                  ["Data handling", 44],
-                ].map(([label, value]) => (
-                  <div key={label} className="interactive-card-dark rounded-[20px] border border-white/10 bg-white/7 p-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="panel-dark-muted text-sm">{label}</div>
-                      <div className="text-sm font-medium text-white">{value}%</div>
-                    </div>
-                    <ProgressBar value={Number(value)} className="mt-3 bg-white/10" tone={Number(value) < 50 ? "warning" : "success"} />
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="space-y-2">
-                <Badge tone="warning" className="w-fit">
-                  Overdue
-                </Badge>
-                <CardTitle>People who need a nudge</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {overdue.map((item) => (
-                  <div key={item} className="interactive-card rounded-[18px] border border-slate-200/70 px-4 py-3 text-sm leading-6 text-slate-700">
+                  `Assigned • ${selected.assigned}`,
+                  selected.status === "Needs push" ? "Needs follow-up" : "No action needed",
+                  "Leadership export available in reports",
+                ].map((item) => (
+                  <div key={item} className="rounded-[16px] border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-slate-300">
                     {item}
                   </div>
                 ))}
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </DisclosureCard>
+          </DetailPanel>
         </section>
       </PageContainer>
     </AppShell>

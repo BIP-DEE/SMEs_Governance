@@ -4,38 +4,38 @@ import { useState } from "react";
 import Link from "next/link";
 import { AppIcon } from "@/components/ui/app-icon";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardTitle } from "@/components/ui/card";
 import { Tabs } from "@/components/ui/tabs";
 
 const workflowItems = [
   {
     id: "review",
     label: "Supplier review assistant",
-    detail: "Retention evidence missing before sign-off.",
+    detail: "Retention evidence missing",
     href: "/requests",
     icon: "requests" as const,
     stage: "Review",
   },
   {
     id: "register",
-    label: "Three new tools need owners",
-    detail: "Recent register entries still need ownership and review dates.",
+    label: "Three tools need owners",
+    detail: "Register follow-up",
     href: "/inventory",
     icon: "inventory" as const,
     stage: "Register",
   },
   {
     id: "enable",
-    label: "Sensitive data guidance is ready to publish",
-    detail: "Finance and support can move into acknowledgement this week.",
+    label: "Sensitive data guidance ready",
+    detail: "Publish this week",
     href: "/policies",
     icon: "policies" as const,
     stage: "Enable",
   },
   {
     id: "monitor",
-    label: "One flagged workspace event is open",
-    detail: "Monitoring already has the log context attached.",
+    label: "Flagged workspace event",
+    detail: "Review attached log",
     href: "/monitoring",
     icon: "monitoring" as const,
     stage: "Monitor",
@@ -45,30 +45,30 @@ const workflowItems = [
 const updates = [
   {
     tone: "success" as const,
-    title: "11 employees acknowledged the updated AI Usage Policy",
-    detail: "Support and finance are now above the weekly acknowledgement target.",
+    title: "11 policy acknowledgements landed",
+    detail: "Support and finance moved up.",
   },
   {
     tone: "info" as const,
-    title: "Invoice review pilot moved back into active review",
-    detail: "Vendor questionnaire was updated and the reviewer reopened the workflow.",
+    title: "Invoice pilot reopened",
+    detail: "Vendor evidence updated.",
   },
 ];
 
 const evidenceItems = [
   {
     tone: "warning" as const,
-    title: "Retention evidence still missing for procurement assistant",
-    detail: "Once uploaded, the approval can move directly into sign-off.",
+    title: "Procurement pack still incomplete",
+    detail: "Missing retention evidence",
     href: "/reports",
-    action: "Open evidence",
+    action: "Open",
   },
   {
     tone: "info" as const,
-    title: "Training completion export is ready for leadership review",
-    detail: "Coverage by department is available in the latest reporting set.",
+    title: "Training export is ready",
+    detail: "Department roll-up available",
     href: "/reports",
-    action: "View report",
+    action: "View",
   },
 ];
 
@@ -82,84 +82,72 @@ export function DashboardSecondaryPanel() {
   const [activeTab, setActiveTab] = useState("workflow");
 
   return (
-    <Card>
-      <CardHeader className="space-y-4 border-b border-[#c8e0ea]/80">
-        <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-          <div className="space-y-2">
-            <Badge className="w-fit">Open detail</Badge>
-            <CardTitle className="text-[1.24rem]">Check only what is blocked, changed, or needed for evidence.</CardTitle>
-          </div>
-          <Tabs items={tabs} activeTab={activeTab} onChange={setActiveTab} />
+    <div className="space-y-4 border-t border-white/6 px-1 pt-4">
+      <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+        <div className="space-y-2">
+          <Badge className="w-fit">Open detail</Badge>
+          <CardTitle className="text-[1.08rem]">Only what changed.</CardTitle>
         </div>
-      </CardHeader>
+        <Tabs items={tabs} activeTab={activeTab} onChange={setActiveTab} />
+      </div>
 
-      <CardContent className="pt-5">
-        {activeTab === "workflow" ? (
-          <div className="space-y-3">
-            {workflowItems.map((item) => (
-              <Link
-                key={item.id}
-                href={item.href}
-                className="surface-card-soft interactive-card flex items-center gap-4 rounded-[22px] px-4 py-4"
-              >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[16px] border border-[#c2dfe0] bg-[rgba(240,250,248,0.8)] text-slate-900">
-                  <AppIcon name={item.icon} className="h-4 w-4" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Badge tone="info">{item.stage}</Badge>
-                    <div className="text-sm font-semibold text-slate-950">{item.label}</div>
-                  </div>
-                  <div className="mt-1 text-sm text-slate-600">{item.detail}</div>
-                </div>
-                <span className="shrink-0 text-slate-400 transition group-hover:text-slate-700">
-                  <AppIcon name="arrow-right" className="h-4 w-4" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        ) : null}
-
-        {activeTab === "updates" ? (
-          <div className="space-y-3">
-            {updates.map((item) => (
-              <div key={item.title} className="surface-card-soft interactive-card rounded-[22px] px-5 py-4">
-                <div className="flex items-start gap-4">
-                  <Badge tone={item.tone} className="mt-0.5 shrink-0">
-                    {item.tone === "success" ? "Completed" : "Reopened"}
-                  </Badge>
-                  <div className="space-y-1">
-                    <div className="text-sm font-semibold text-slate-950">{item.title}</div>
-                    <div className="text-sm text-slate-600">{item.detail}</div>
-                  </div>
-                </div>
+      {activeTab === "workflow" ? (
+        <div className="space-y-3">
+          {workflowItems.map((item) => (
+            <Link
+              key={item.id}
+              href={item.href}
+              className="interactive-card flex items-center gap-4 rounded-[22px] border border-white/6 bg-white/[0.025] px-4 py-4"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border border-white/10 bg-white/[0.05] text-slate-100">
+                <AppIcon name={item.icon} className="h-4 w-4" />
               </div>
-            ))}
-          </div>
-        ) : null}
-
-        {activeTab === "evidence" ? (
-          <div className="space-y-3">
-            {evidenceItems.map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="surface-card-soft interactive-card flex items-start justify-between gap-4 rounded-[22px] px-5 py-4"
-              >
-                <div className="min-w-0 space-y-1">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Badge tone={item.tone}>{item.tone === "warning" ? "Needs evidence" : "Ready"}</Badge>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Reports</span>
-                  </div>
-                  <div className="text-sm font-semibold text-slate-950">{item.title}</div>
-                  <div className="text-sm text-slate-600">{item.detail}</div>
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge tone="info">{item.stage}</Badge>
+                  <div className="text-sm font-semibold text-slate-100">{item.label}</div>
                 </div>
-                <span className="shrink-0 text-sm font-medium text-slate-700">{item.action}</span>
-              </Link>
-            ))}
-          </div>
-        ) : null}
-      </CardContent>
-    </Card>
+                <div className="mt-1 text-sm text-slate-400">{item.detail}</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      ) : null}
+
+      {activeTab === "updates" ? (
+        <div className="space-y-3">
+          {updates.map((item) => (
+            <div key={item.title} className="rounded-[22px] border border-white/6 bg-white/[0.025] px-4 py-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge tone={item.tone}>{item.tone === "success" ? "Done" : "Reopened"}</Badge>
+                <div className="text-sm font-semibold text-slate-100">{item.title}</div>
+              </div>
+              <div className="mt-1 text-sm text-slate-400">{item.detail}</div>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      {activeTab === "evidence" ? (
+        <div className="space-y-3">
+          {evidenceItems.map((item) => (
+            <Link
+              key={item.title}
+              href={item.href}
+              className="interactive-card flex items-center justify-between gap-4 rounded-[22px] border border-white/6 bg-white/[0.025] px-4 py-4"
+            >
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge tone={item.tone}>{item.tone === "warning" ? "Needs evidence" : "Ready"}</Badge>
+                  <div className="text-sm font-semibold text-slate-100">{item.title}</div>
+                </div>
+                <div className="mt-1 text-sm text-slate-400">{item.detail}</div>
+              </div>
+              <span className="text-sm font-medium text-slate-200">{item.action}</span>
+            </Link>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }

@@ -18,7 +18,7 @@ export function TableHeader({ className, ...props }: HTMLAttributes<HTMLTableSec
   return (
     <thead
       className={cn(
-        "bg-[linear-gradient(180deg,rgba(248,250,252,0.96),rgba(240,245,251,0.84))]",
+        "bg-transparent",
         className
       )}
       {...props}
@@ -34,7 +34,7 @@ export function TableRow({ className, ...props }: HTMLAttributes<HTMLTableRowEle
   return (
     <tr
       className={cn(
-        "border-b border-slate-200/70 transition hover:bg-blue-50/44",
+        "border-b border-white/6 transition hover:bg-white/[0.022] data-[selected=true]:bg-[linear-gradient(90deg,rgba(34,211,238,0.06),rgba(255,255,255,0.01))]",
         className
       )}
       {...props}
@@ -46,7 +46,7 @@ export function TableHead({ className, ...props }: ThHTMLAttributes<HTMLTableCel
   return (
     <th
       className={cn(
-        "px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 first:rounded-l-[18px] last:rounded-r-[18px]",
+        "px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 first:rounded-l-[18px] last:rounded-r-[18px]",
         className
       )}
       {...props}
@@ -55,5 +55,5 @@ export function TableHead({ className, ...props }: ThHTMLAttributes<HTMLTableCel
 }
 
 export function TableCell({ className, ...props }: TdHTMLAttributes<HTMLTableCellElement>) {
-  return <td className={cn("px-5 py-4 align-top text-sm leading-6 text-slate-800", className)} {...props} />;
+  return <td className={cn("px-4 py-3.5 align-top text-sm leading-6 text-slate-200", className)} {...props} />;
 }

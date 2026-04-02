@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
 
 export function PageContainer({ children }: { children: ReactNode }) {
-  return <div className="mx-auto max-w-[1560px] px-4 pb-10 pt-5 sm:px-6 lg:px-8 lg:pt-6">{children}</div>;
+  return <div className="mx-auto max-w-[1460px] px-4 pb-12 pt-3 sm:px-6 lg:px-8 lg:pt-4">{children}</div>;
 }
 
 type PageHeaderProps = {
   eyebrow: string;
   title: string;
-  description: string;
+  description?: string;
   actions?: ReactNode;
   meta?: ReactNode;
 };
@@ -20,25 +20,19 @@ export function PageHeader({
   meta,
 }: PageHeaderProps) {
   return (
-    <header className="mb-5 grid gap-3 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center">
-      <div className="surface-card-strong relative overflow-hidden rounded-[30px] px-5 py-5 sm:px-6">
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-44 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.18),transparent_62%)]" />
-        <div className="pointer-events-none absolute -left-8 top-0 h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(20,184,166,0.14),transparent_70%)]" />
-        <div className="pointer-events-none absolute inset-y-5 left-4 w-px bg-[linear-gradient(180deg,rgba(37,99,235,0.3),rgba(20,184,166,0.05))]" />
-        <div className="relative max-w-3xl pl-3">
-          <div className="inline-flex rounded-full border border-[#bfdced] bg-[linear-gradient(180deg,rgba(244,251,255,0.94),rgba(234,247,252,0.84))] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-800">
-            {eyebrow}
-          </div>
-          <h1 className="mt-3 max-w-2xl text-balance text-[1.72rem] font-semibold tracking-[-0.055em] text-slate-950 sm:text-[1.92rem]">
-            {title}
-          </h1>
-          <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600 sm:text-[15px]">
-            {description}
-          </p>
-          {meta ? <div className="mt-3 flex flex-wrap gap-2">{meta}</div> : null}
+    <header className="mb-6 grid gap-4 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center">
+      <div className="max-w-3xl border-t border-white/6 px-1 pt-4 sm:pt-5">
+        <div className="inline-flex items-center gap-2 rounded-full bg-cyan-300/[0.07] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-100/88">
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]" />
+          {eyebrow}
         </div>
+        <h1 className="mt-3 max-w-3xl text-balance text-[1.82rem] font-semibold tracking-[-0.055em] text-slate-50 sm:text-[2.08rem]">
+          {title}
+        </h1>
+        {description ? <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">{description}</p> : null}
+        {meta ? <div className="mt-4 flex flex-wrap gap-2">{meta}</div> : null}
       </div>
-      {actions ? <div className="flex flex-wrap items-center gap-2 xl:justify-end">{actions}</div> : null}
+      {actions ? <div className="flex flex-wrap items-center gap-2 xl:justify-end xl:self-start">{actions}</div> : null}
     </header>
   );
 }

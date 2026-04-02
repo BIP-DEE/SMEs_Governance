@@ -11,7 +11,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div
-      className="min-h-screen lg:grid"
+      className="auth-shell auth-shell-admin min-h-screen lg:grid"
       style={{
         gridTemplateColumns: sidebarCollapsed ? "112px minmax(0,1fr)" : "304px minmax(0,1fr)",
       }}
@@ -20,7 +20,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <Sidebar variant="admin" />
       <div className="main-admin-canvas min-w-0">
         <Topbar variant="admin" />
-        <main className="pb-8">{children}</main>
+        <main className="pb-10">{children}</main>
       </div>
     </div>
   );

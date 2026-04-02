@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 type ProductBrandProps = {
   compact?: boolean;
   context?: "default" | "sidebar";
-  size?: "default" | "landing";
+  size?: "default" | "landing" | "shell";
   className?: string;
 };
 
@@ -15,10 +15,11 @@ export function ProductBrand({
 }: ProductBrandProps) {
   const sidebar = context === "sidebar";
   const landing = size === "landing";
+  const shell = size === "shell";
 
   return (
     <div
-      className={cn("flex items-center gap-3", landing && "gap-3.5", className)}
+      className={cn("flex items-center gap-3", landing && "gap-3.5", shell && "gap-4", className)}
       data-product-brand-root
     >
       <div
@@ -27,16 +28,19 @@ export function ProductBrand({
           "relative flex items-center justify-center overflow-hidden border bg-[radial-gradient(circle_at_24%_18%,rgba(59,130,246,0.34),transparent_30%),radial-gradient(circle_at_76%_74%,rgba(20,184,166,0.24),transparent_34%),linear-gradient(145deg,rgba(7,15,36,0.98),rgba(9,58,80,0.98))]",
           compact ? "h-11 w-11 rounded-[22px]" : "h-12 w-12 rounded-[22px]",
           compact && landing && "h-[54px] w-[54px] rounded-[26px]",
+          !compact && shell && "h-[54px] w-[54px] rounded-[24px]",
           sidebar ? "border-white/14" : "border-slate-200/80",
           landing
             ? "shadow-[0_24px_54px_rgba(4,17,34,0.32),inset_0_1px_0_rgba(255,255,255,0.16)]"
-            : "shadow-[0_20px_44px_rgba(8,25,48,0.26)]"
+            : shell
+              ? "shadow-[0_26px_58px_rgba(2,8,20,0.34),inset_0_1px_0_rgba(255,255,255,0.12)]"
+              : "shadow-[0_20px_44px_rgba(8,25,48,0.26)]"
         )}
       >
         <svg
           viewBox="0 0 52 52"
           fill="none"
-          className={cn(landing ? "h-8 w-8" : "h-7 w-7")}
+          className={cn(landing ? "h-8 w-8" : shell ? "h-[30px] w-[30px]" : "h-7 w-7")}
           aria-hidden="true"
         >
           <path
@@ -74,7 +78,7 @@ export function ProductBrand({
         <div className="space-y-0.5">
           <div
             className={cn(
-              landing ? "text-[1.08rem]" : "text-[1.02rem]",
+              landing ? "text-[1.08rem]" : shell ? "text-[1.14rem]" : "text-[1.02rem]",
               "font-semibold tracking-[-0.05em]",
               sidebar ? "text-slate-50" : "text-slate-950"
             )}
@@ -83,7 +87,8 @@ export function ProductBrand({
           </div>
           <div
             className={cn(
-              "text-[11px] font-medium uppercase tracking-[0.24em]",
+              shell ? "text-[10px] tracking-[0.28em]" : "text-[11px] tracking-[0.24em]",
+              "font-medium uppercase",
               sidebar ? "text-cyan-100/56" : "text-slate-500"
             )}
           >

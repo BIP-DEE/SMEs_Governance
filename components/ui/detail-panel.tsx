@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardDescription, CardTitle } from "@/components/ui/card";
 
 type DetailPanelProps = {
   eyebrow: string;
@@ -20,11 +20,11 @@ export function DetailPanel({
   children,
 }: DetailPanelProps) {
   return (
-    <Card className="sticky top-[102px] overflow-hidden">
-      <CardHeader className="border-b border-slate-200/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.76),rgba(246,250,255,0.56))]">
+    <aside className="relative lg:sticky lg:top-[104px]">
+      <div className="space-y-4 border-t border-white/6 px-1 pt-4">
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-2">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">
               {eyebrow}
             </p>
             <div className="space-y-1">
@@ -41,8 +41,8 @@ export function DetailPanel({
             ) : null}
           </div>
         </div>
-      </CardHeader>
-      <CardContent className="space-y-5">{children}</CardContent>
-    </Card>
+        <div className="space-y-4 border-t border-white/6 pt-4">{children}</div>
+      </div>
+    </aside>
   );
 }

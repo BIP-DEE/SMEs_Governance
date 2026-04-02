@@ -26,16 +26,16 @@ export function FilterBar({
   className,
 }: FilterBarProps) {
   return (
-    <div className={cn("space-y-4", className)}>
-      <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-        <div className="w-full xl:max-w-xl">
+    <div className={cn("space-y-3", className)}>
+      <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
+        <div className="w-full xl:max-w-lg">
           <Input placeholder={placeholder} aria-label={placeholder} />
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {filters.map((filter) => (
             <button
               key={filter}
-              className="inline-flex h-10 items-center whitespace-nowrap rounded-[14px] border border-[#c8deea]/90 bg-[linear-gradient(180deg,rgba(248,252,255,0.92),rgba(237,247,251,0.82))] px-3.5 text-sm font-medium text-slate-600 shadow-[0_6px_18px_rgba(28,65,118,0.04)] transition hover:-translate-y-[1px] hover:border-[#9dc8df] hover:text-slate-900"
+              className="inline-flex h-8 items-center whitespace-nowrap rounded-full border border-white/8 bg-white/[0.03] px-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-300 transition hover:border-cyan-300/14 hover:text-white"
             >
               {filter}
             </button>

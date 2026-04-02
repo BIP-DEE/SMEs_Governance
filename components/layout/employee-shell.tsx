@@ -11,7 +11,7 @@ export function EmployeeShell({ children }: { children: ReactNode }) {
 
   return (
     <div
-      className="min-h-screen lg:grid"
+      className="auth-shell auth-shell-employee min-h-screen lg:grid"
       style={{
         gridTemplateColumns: sidebarCollapsed ? "112px minmax(0,1fr)" : "304px minmax(0,1fr)",
       }}
@@ -20,7 +20,7 @@ export function EmployeeShell({ children }: { children: ReactNode }) {
       <Sidebar variant="employee" />
       <div className="main-employee-canvas min-w-0">
         <Topbar variant="employee" />
-        <main className="pb-8">{children}</main>
+        <main className="pb-10">{children}</main>
       </div>
     </div>
   );
